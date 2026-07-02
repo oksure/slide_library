@@ -115,6 +115,12 @@
 | 17 | 종료 선언 | `.slide.dark.slide--statement` (재사용) | 핵심 메시지 한 명제 |
 | 18 | 마무리 | `.slide.dark.slide--end` | 마지막 메시지 + 메타 |
 
+
+| 19 | 코드 블록 | `.adopt-code > .adopt-code-bar + pre` | 부록용 산출 로직 원문. 골드 모노 파일명 바 |
+| 20 | 데이터 표 | `.adopt-table(.striped) / tr.hl` | 표. 골드 헤더 룰, `.striped` 줄무늬·`tr.hl` 강조는 플래그 |
+| 21 | 도판 그리드 | `.adopt-imgrid.cols-2 > figure` | PLATE 태그 도판 대비. FIG 캡션 모노 |
+| 22 | 2×2 매트릭스 | `.adopt-mx2 > -y + -panel + -x` | 골드 십자축 사분면. `.hot` 워시 |
+위 표에서 굵은 번호 이후(신규 행)는 slides.hwpark.net 블록 카탈로그에서 **구조만** 가져와 본 템플릿의 시각 시스템으로 재설계한 레이아웃이다 (2026-07-02 adopt). 변형은 클래스 플래그로 켠다.
 ### 3.1 레이아웃 선택 가이드
 
 - 한 명제만 강조할 슬라이드는 §3 또는 §6 (인용). 인용은 사람의 말을 인용할 때만, 자체 명제는 statement.

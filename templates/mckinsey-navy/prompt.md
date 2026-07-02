@@ -98,6 +98,14 @@
 | 9 | 4단계 로드맵 | `.roadmap > .roadmap-phase × 4` | 분기별 4단계, 현재 단계는 `.active` |
 | 10 | 마무리 | `.slide.dark > .closing` | 핵심 메시지 한 문장 + 다음 단계 3개 |
 
+
+| 11 | 코드 블록 | `.codeblk > .codeblk-bar + pre` | 기술 근거 원문. `.cm/.kw/.st` 3색만 — 하이라이터 의존성 없음 |
+| 12 | 장단 2열 대비 | `.pc > .pc-col.plus + .pc-col.minus` | 단일 안건의 장단 대비. +/− 마커, §8 옵션 카드의 1안 버전 |
+| 13 | 체크리스트 | `.ck > .ck-col × 3` | 실행 점검. ✓=완료, `li.pending`=○ 대기, `.cols-1` 변형 |
+| 14 | 이미지 그리드 | `.imgrid.cols-2/3/4 > figure` | 증거 사진 2-4장. `.tag`/`.tag.accent`로 BEFORE/AFTER·A/B 변형 |
+| 15 | 조직도 | `.org > .org-node.root + .org-row > .org-branch` | 3계층 박스형 조직도 (루트 반전) |
+| 16 | 2×2 매트릭스 | `.mx2 > .mx2-y + .mx2-panel + .mx2-x` | 십자축(`::before/::after`) 사분면. `.mx2-cell.hot` 강조 워시 |
+위 표에서 굵은 번호 이후(신규 행)는 slides.hwpark.net 블록 카탈로그에서 **구조만** 가져와 본 템플릿의 시각 시스템으로 재설계한 레이아웃이다 (2026-07-02 adopt). 변형은 클래스 플래그로 켠다.
 ### 3.1 레이아웃 선택 가이드
 
 - 트렌드/동인이 3개면 §3 (3열). 4개 이상이면 4열 변형을 §6 규칙으로 만든다.

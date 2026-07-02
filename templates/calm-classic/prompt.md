@@ -97,6 +97,14 @@
 | 9 | 팀 (4명) | `.slide-team` | 헤더 + 4명 그리드 (12vw 원형 아바타 + 이름 + 직책) |
 | 10 | 마무리 | `.slide-closing` | 중앙 큰 h1 + 짧은 lead + 연락처 + 50vw 점선 원 ring |
 
+
+| 11 | 코드 블록 | `.adopt-code > .adopt-code-bar + pre` | 부록 코드. 다크 패널, 크림 텍스트 |
+| 12 | 데이터 표 | `.adopt-table / tr.hl` | 미니멀 표. 잉크 헤더 룰, `tr.hl` 강조 |
+| 13 | 장단 2열 대비 | `.adopt-pc > .plus + .minus` | 제안 장단. 잉크/라인 톱룰 대비 |
+| 14 | 체크리스트 | `.adopt-ck > .adopt-ck-col × 3` | 진행 점검. ✓/○, 세컨더리 배경 카드 |
+| 15 | 이미지 그리드 | `.adopt-imgrid.cols-2 > figure` | 전후 도판. 잉크 태그 |
+| 16 | 2×2 매트릭스 | `.adopt-mx2 > -y + -panel + -x` | 사분면. `.hot`=세컨더리 워시 |
+위 표에서 굵은 번호 이후(신규 행)는 slides.hwpark.net 블록 카탈로그에서 **구조만** 가져와 본 템플릿의 시각 시스템으로 재설계한 레이아웃이다 (2026-07-02 adopt). 변형은 클래스 플래그로 켠다.
 ### 3.1 레이아웃 선택 가이드
 
 - 안건·목차가 4~5개면 §2 아젠다. serif 번호(`Playfair Display 1.5rem`)가 시그니처.

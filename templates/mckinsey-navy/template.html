@@ -209,6 +209,62 @@
   .deck { gap: 0; margin: 0; padding: 0; max-width: none; }
   .slide { width: 100vw; height: 100vh; aspect-ratio: auto; flex-shrink: 0; }
   @media (max-width: 720px) { .nav-dots { bottom: 16px; padding: 8px 14px; gap: 8px; } }
+
+  /* ── adopted from slides.hwpark.net block catalog (2026-07-02) ── */
+  .codeblk { background: var(--navy); border-radius: 0.4cqi; overflow: hidden; margin-top: 2cqi; }
+  .codeblk-bar { display: flex; align-items: center; gap: 1cqi; padding: 0.9cqi 1.4cqi; background: var(--navy-2); color: #9ab1c4; font-family: monospace; font-size: 0.85em; }
+  .codeblk-bar i { width: 0.8cqi; height: 0.8cqi; border-radius: 50%; background: var(--blue-pale); opacity: 0.5; }
+  .codeblk pre { margin: 0; padding: 1.6cqi 1.8cqi; color: #d7e3ee; font-family: 'SF Mono', Consolas, monospace; font-size: 0.95em; line-height: 1.75; overflow-x: hidden; white-space: pre-wrap; }
+  .codeblk .cm { color: #6b8299; } .codeblk .kw { color: var(--blue-mid); } .codeblk .st { color: #9ecf9e; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqi; margin-top: 2.4cqi; }
+  .pc-col { border-top: 0.4cqi solid var(--line); padding-top: 1.4cqi; }
+  .pc-col.plus { border-top-color: var(--blue); }
+  .pc-col.minus { border-top-color: var(--navy); }
+  .pc-col h4 { font-size: 1.05em; font-weight: 700; margin-bottom: 1.2cqi; }
+  .pc-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .pc-col li { font-size: 0.95em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .pc-col.plus li::before { content: "+"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+  .pc-col.minus li::before { content: "−"; position: absolute; left: 0; color: var(--navy); font-weight: 700; }
+  .ck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqi; margin-top: 2.4cqi; }
+  .ck.cols-1 { grid-template-columns: 1fr; max-width: 60cqi; }
+  .ck-col { border: 1px solid var(--line); padding: 1.8cqi; }
+  .ck-col h4 { font-size: 1em; font-weight: 700; margin-bottom: 1.2cqi; }
+  .ck-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .ck-col li { font-size: 0.9em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .ck-col li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+  .ck-col li.pending { opacity: 0.55; } .ck-col li.pending::before { content: "○"; color: var(--blue-pale); }
+  .imgrid { display: grid; gap: 2cqi; margin-top: 2.2cqi; }
+  .imgrid.cols-2 { grid-template-columns: 1fr 1fr; } .imgrid.cols-3 { grid-template-columns: repeat(3,1fr); } .imgrid.cols-4 { grid-template-columns: repeat(4,1fr); }
+  .imgrid figure { margin: 0; display: flex; flex-direction: column; position: relative; }
+  .imgrid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid var(--line); }
+  .imgrid figcaption { font-size: 0.8em; color: var(--muted); margin-top: 0.7cqi; }
+  .imgrid .tag { position: absolute; top: 1cqi; left: 1cqi; z-index: 2; font-size: 0.72em; font-weight: 700; letter-spacing: 0.12em; color: #fff; background: var(--navy); padding: 0.3cqi 0.9cqi; }
+  .imgrid .tag.accent { background: var(--blue); }
+  .org { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 2.4cqi; }
+  .org-node { border: 1px solid var(--line); background: var(--paper); padding: 1cqi 1.8cqi; text-align: center; }
+  .org-node b { display: block; font-size: 0.95em; } .org-node span { font-size: 0.78em; color: var(--muted); }
+  .org-node.root { background: var(--navy); border-color: var(--navy); } .org-node.root b { color: #fff; } .org-node.root span { color: #9ab1c4; }
+  .org-drop { width: 1px; height: 2cqi; background: var(--line); }
+  .org-row { display: flex; gap: 2.4cqi; justify-content: center; position: relative; padding-top: 2cqi; }
+  .org-row::before { content: ''; position: absolute; top: 0; left: 12%; right: 12%; border-top: 1px solid var(--line); }
+  .org-branch { display: flex; flex-direction: column; align-items: center; gap: 0; position: relative; }
+  .org-branch::before { content: ''; width: 1px; height: 2cqi; background: var(--line); }
+  .org-kids { display: flex; flex-direction: column; gap: 0.6cqi; margin-top: 1cqi; }
+  .org-kids .org-node { padding: 0.6cqi 1.2cqi; border-style: dashed; }
+  .mx2 { display: flex; align-items: stretch; gap: 1.2cqi; margin-top: 2.2cqi; }
+  .mx2-y { display: flex; align-items: center; justify-content: center; width: 2.4cqi; }
+  .mx2-y span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.8em; letter-spacing: 0.15em; color: var(--muted); font-weight: 600; }
+  .mx2-main { flex: 1; display: flex; flex-direction: column; }
+  .mx2-panel { position: relative; border: 1px solid var(--line); background: var(--paper); display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 32cqi; }
+  .mx2-panel::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 0.15cqi; background: var(--blue); opacity: 0.5; }
+  .mx2-panel::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 0.15cqi; background: var(--blue); opacity: 0.5; }
+  .mx2-cell { padding: 1.6cqi; display: flex; flex-direction: column; gap: 0.8cqi; }
+  .mx2-cell.hot { background: rgba(34,81,255,0.07); }
+  .mx2-cell h4 { font-size: 0.98em; font-weight: 700; } .mx2-cell.hot h4 { color: var(--blue); }
+  .mx2-cell li { font-size: 0.82em; color: var(--muted); list-style: none; padding-left: 1.4cqi; position: relative; }
+  .mx2-cell li::before { content: ''; position: absolute; left: 0; top: 0.9cqi; width: 0.5cqi; height: 0.5cqi; border-radius: 50%; background: var(--blue); }
+  .mx2-x { text-align: center; font-size: 0.8em; letter-spacing: 0.15em; color: var(--muted); font-weight: 600; margin-top: 1cqi; }
+
 </style>
 </head>
 <body>
@@ -236,7 +292,7 @@
   <!-- Slide 2: 목차 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">2 / 10</span>
+    <span class="pg">2 / 16</span>
     <div class="body">
       <h2 class="action-title">오늘 논의할 5가지 안건</h2>
       <div class="action-rule"></div>
@@ -284,7 +340,7 @@
   <!-- Slide 3: 3대 구조적 변화 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">3 / 10</span>
+    <span class="pg">3 / 16</span>
     <div class="body">
       <h2 class="action-title">3대 구조적 변화가 향후 10년 산업 지형을 바꿉니다</h2>
       <div class="action-rule"></div>
@@ -329,7 +385,7 @@
   <!-- Slide 4: 현황 진단 (KPI Cards) -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">4 / 10</span>
+    <span class="pg">4 / 16</span>
     <div class="body">
       <h2 class="action-title">4대 핵심 지표 중 2개가 목표 대비 미달입니다</h2>
       <div class="action-rule"></div>
@@ -368,7 +424,7 @@
   <!-- Slide 5: 갭 분석 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">5 / 10</span>
+    <span class="pg">5 / 16</span>
     <div class="body">
       <h2 class="action-title">현재 역량과 목표 사이에 5개 영역에서 격차가 확인됩니다</h2>
       <div class="action-rule"></div>
@@ -406,7 +462,7 @@
   <!-- Slide 6: 벤치마크 비교 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">6 / 10</span>
+    <span class="pg">6 / 16</span>
     <div class="body">
       <h2 class="action-title">성장률은 앞서지만, 수익성·디지털 역량에서 경쟁사에 뒤처집니다</h2>
       <div class="action-rule"></div>
@@ -461,7 +517,7 @@
   <!-- Slide 7: 채널별 매출 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">7 / 10</span>
+    <span class="pg">7 / 16</span>
     <div class="body">
       <h2 class="action-title">디지털 채널 매출이 5년간 2.4배 성장해 전체 매출의 절반 수준에 도달했습니다</h2>
       <div class="action-rule"></div>
@@ -490,7 +546,7 @@
   <!-- Slide 8: 전략 옵션 평가 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">8 / 10</span>
+    <span class="pg">8 / 16</span>
     <div class="body">
       <h2 class="action-title">3개 전략 옵션 중 옵션 B(플랫폼 전환)의 위험 대비 수익이 가장 높습니다</h2>
       <div class="action-rule"></div>
@@ -565,7 +621,7 @@
   <!-- Slide 9: 실행 로드맵 -->
   <section class="slide">
     <div class="top-rule"><span>AI ROASTING</span></div>
-    <span class="pg">9 / 10</span>
+    <span class="pg">9 / 16</span>
     <div class="body">
       <h2 class="action-title">4단계 로드맵으로 12개월 내 핵심 전환을 완료합니다</h2>
       <div class="action-rule"></div>
@@ -618,6 +674,137 @@
       </div>
     </div>
     <div class="source">출처: 프로젝트 팀 수립안, 2026년 5월</div>
+  </section>
+
+
+  <!-- ═══ slides.hwpark.net 블록 카탈로그에서 adopt (2026-07-02) ═══ -->
+
+  <!-- A1: 코드 블록 -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">10 / 16</span>
+    <div class="body">
+      <h2 class="action-title">기술 근거는 코드 블록으로 직접 보여줍니다</h2>
+      <div class="action-rule"></div>
+      <p class="action-sub">파일명 바 + 프리랩 코드. 색은 주석·키워드·문자열 3종만 — 문법 하이라이터 의존성 없이 유지합니다.</p>
+      <div class="codeblk">
+        <div class="codeblk-bar"><i></i><i></i><i></i>revenue_model.py</div>
+        <pre><span class="cm"># 채널별 기여 매출 — 귀속 가중치는 §4 벤치마크 기준</span>
+<span class="kw">def</span> attributed_revenue(channel, weight=<span class="st">0.62</span>):
+    base = channel.gross * weight
+    <span class="kw">return</span> base * seasonality(channel.quarter)</pre>
+      </div>
+    </div>
+    <div class="source">출처: slides.hwpark.net code 블록 구조 adopt, 2026년 7월</div>
+  </section>
+
+  <!-- A2: 장단 2열 대비 -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">11 / 16</span>
+    <div class="body">
+      <h2 class="action-title">단일 안건의 장단은 2열 대비가 옵션 카드보다 빠릅니다</h2>
+      <div class="action-rule"></div>
+      <p class="action-sub">옵션이 하나뿐일 때 §8 옵션 비교 카드 대신 사용합니다. +/− 마커가 스캔 속도를 만듭니다.</p>
+      <div class="pc">
+        <div class="pc-col plus">
+          <h4>장점</h4>
+          <ul>
+            <li>의사결정이 빠릅니다 — 카드 3장 대신 한 판단</li>
+            <li>지면의 절반을 반론에 강제 배정합니다</li>
+            <li>액션 타이틀과 함께 읽으면 결론이 즉시 섭니다</li>
+          </ul>
+        </div>
+        <div class="pc-col minus">
+          <h4>단점</h4>
+          <ul>
+            <li>대안 비교가 필요한 안건에는 부적합합니다</li>
+            <li>항목이 5개를 넘으면 대비 효과가 죽습니다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: slides strategy-options 구조의 2열 파생</div>
+  </section>
+
+  <!-- A3: 체크리스트 -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">12 / 16</span>
+    <div class="body">
+      <h2 class="action-title">실행 점검은 완료·미완을 한 면에서 확인합니다</h2>
+      <div class="action-rule"></div>
+      <p class="action-sub">✓=완료, ○=대기. 열 수는 .cols-1 변형으로 줄일 수 있습니다.</p>
+      <div class="ck">
+        <div class="ck-col"><h4>데이터 기반</h4><ul><li>전사 KPI 정의 통일</li><li>주간 자동 집계 배치</li><li class="pending">사업부별 드릴다운</li></ul></div>
+        <div class="ck-col"><h4>운영 전환</h4><ul><li>PMO 구성</li><li class="pending">1차 파일럿 사업부 선정</li><li class="pending">전환 교육 커리큘럼</li></ul></div>
+        <div class="ck-col"><h4>거버넌스</h4><ul><li>운영위원회 발족</li><li>월간 보고 체계</li><li class="pending">리스크 레지스터</li></ul></div>
+      </div>
+    </div>
+    <div class="source">출처: slides checklist 블록 adopt</div>
+  </section>
+
+  <!-- A4: 이미지 그리드 (+A/B 변형) -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">13 / 16</span>
+    <div class="body">
+      <h2 class="action-title">현장 증거는 이미지 그리드로, 개선 전후는 A/B 태그로 붙입니다</h2>
+      <div class="action-rule"></div>
+      <p class="action-sub">.cols-2/3/4 변형 + .tag(A/B·Before/After) 플래그 — 한 레이아웃이 두 용도를 겸합니다.</p>
+      <div class="imgrid cols-3">
+        <figure><span class="tag">BEFORE</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234DACEA%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231a3145%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2250%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20A%3C/text%3E%3C/svg%3E" alt=""/><figcaption>개편 전 매장 동선</figcaption></figure>
+        <figure><span class="tag accent">AFTER</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%231a3145%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23051C2C%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2250%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20B%3C/text%3E%3C/svg%3E" alt=""/><figcaption>개편 후 — 체류 +18%</figcaption></figure>
+        <figure><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232251FF%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23051C2C%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2250%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20C%3C/text%3E%3C/svg%3E" alt=""/><figcaption>경쟁사 벤치마크 사례</figcaption></figure>
+      </div>
+    </div>
+    <div class="source">출처: slides image-grid/image-compare 블록 통합 adopt</div>
+  </section>
+
+  <!-- A5: 조직도 -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">14 / 16</span>
+    <div class="body">
+      <h2 class="action-title">전환 조직은 3계층 거버넌스로 운영합니다</h2>
+      <div class="action-rule"></div>
+      <div class="org">
+        <div class="org-node root"><b>전환 운영위원회</b><span>CEO 직속 · 월 1회</span></div>
+        <div class="org-drop"></div>
+        <div class="org-row">
+          <div class="org-branch"><div class="org-node"><b>플랫폼 PMO</b><span>전환 총괄</span></div>
+            <div class="org-kids"><div class="org-node"><b>데이터 TF</b></div><div class="org-node"><b>시스템 TF</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>사업부 리더 협의체</b><span>실행</span></div>
+            <div class="org-kids"><div class="org-node"><b>파일럿 사업부</b></div><div class="org-node"><b>확산 대상 4개</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>변화관리팀</b><span>교육·소통</span></div>
+            <div class="org-kids"><div class="org-node"><b>교육 운영</b></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: slides org-tree 구조를 컨설팅 박스형으로 재설계</div>
+  </section>
+
+  <!-- A6: 2×2 십자축 매트릭스 -->
+  <section class="slide">
+    <div class="top-rule"><span>AI ROASTING</span></div>
+    <span class="pg">15 / 16</span>
+    <div class="body">
+      <h2 class="action-title">우선순위는 임팩트×실행난이도 2×2에서 결정합니다</h2>
+      <div class="action-rule"></div>
+      <div class="mx2">
+        <div class="mx2-y"><span>임팩트 ▲</span></div>
+        <div class="mx2-main">
+          <div class="mx2-panel">
+            <div class="mx2-cell hot"><h4>Quick Win — 즉시 실행</h4><ul><li>자동 보고 배치</li><li>KPI 정의 통일</li></ul></div>
+            <div class="mx2-cell"><h4>전략 과제 — 로드맵 편성</h4><ul><li>플랫폼 전환</li><li>데이터 통합</li></ul></div>
+            <div class="mx2-cell"><h4>보류 — 재평가</h4><ul><li>레거시 대체</li></ul></div>
+            <div class="mx2-cell"><h4>선택 과제 — 여력 시</h4><ul><li>부가 대시보드</li></ul></div>
+          </div>
+          <div class="mx2-x">실행 난이도 ▶</div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: slides matrix-2x2 (십자축·emphasis wash) adopt</div>
   </section>
 
   <!-- Slide 10: 마무리 -->

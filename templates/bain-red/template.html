@@ -208,6 +208,49 @@
   .deck { gap: 0; margin: 0; padding: 0; max-width: none; }
   .slide { width: 100vw; height: 100vh; aspect-ratio: auto; flex-shrink: 0; }
   @media (max-width: 720px) { .nav-dots { bottom: 16px; padding: 8px 14px; gap: 8px; } }
+
+  /* ── adopted from slides.hwpark.net block catalog (2026-07-02) ── */
+  .codeblk { background: var(--navy); overflow: hidden; margin-top: 2cqi; }
+  .codeblk-bar { padding: 0.9cqi 1.4cqi; background: #0a3049; color: #8fa8bb; font-family: monospace; font-size: 0.85em; border-left: 0.5cqi solid var(--red); }
+  .codeblk pre { margin: 0; padding: 1.6cqi 1.8cqi; color: #dbe6ee; font-family: 'SF Mono', Consolas, monospace; font-size: 0.95em; line-height: 1.75; white-space: pre-wrap; }
+  .codeblk .cm { color: #6b8299; } .codeblk .kw { color: #ff6b6b; } .codeblk .st { color: #a8d4bf; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqi; margin-top: 2.4cqi; }
+  .pc-col { background: var(--soft); padding: 1.8cqi; }
+  .pc-col.plus { border-top: 0.45cqi solid var(--red); }
+  .pc-col.minus { border-top: 0.45cqi solid var(--navy); background: var(--tint); }
+  .pc-col h4 { font-size: 1.05em; font-weight: 800; margin-bottom: 1.2cqi; }
+  .pc-col.plus h4 { color: var(--red); }
+  .pc-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .pc-col li { font-size: 0.95em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .pc-col.plus li::before { content: "+"; position: absolute; left: 0; color: var(--red); font-weight: 800; }
+  .pc-col.minus li::before { content: "−"; position: absolute; left: 0; color: var(--navy); font-weight: 800; }
+  .ck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqi; margin-top: 2.4cqi; }
+  .ck-col { border: 1px solid var(--line); border-top: 0.45cqi solid var(--navy); padding: 1.8cqi; }
+  .ck-col.accent { border-top-color: var(--red); }
+  .ck-col h4 { font-size: 1em; font-weight: 800; margin-bottom: 1.2cqi; }
+  .ck-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .ck-col li { font-size: 0.9em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .ck-col li::before { content: "✓"; position: absolute; left: 0; color: var(--red); font-weight: 800; }
+  .ck-col li.pending { opacity: 0.55; } .ck-col li.pending::before { content: "○"; color: var(--line); }
+  .imgrid { display: grid; gap: 2cqi; margin-top: 2.2cqi; }
+  .imgrid.cols-2 { grid-template-columns: 1fr 1fr; } .imgrid.cols-3 { grid-template-columns: repeat(3,1fr); } .imgrid.cols-4 { grid-template-columns: repeat(4,1fr); }
+  .imgrid figure { margin: 0; position: relative; display: flex; flex-direction: column; }
+  .imgrid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid var(--line); }
+  .imgrid figcaption { font-size: 0.8em; color: var(--muted); margin-top: 0.7cqi; }
+  .imgrid .tag { position: absolute; top: 1cqi; left: 1cqi; z-index: 2; font-size: 0.72em; font-weight: 800; letter-spacing: 0.12em; color: #fff; background: var(--navy); padding: 0.3cqi 0.9cqi; }
+  .imgrid .tag.accent { background: var(--red); }
+  .org { display: flex; flex-direction: column; align-items: center; margin-top: 2.4cqi; }
+  .org-node { border: 1px solid var(--line); background: #fff; padding: 1cqi 1.8cqi; text-align: center; }
+  .org-node b { display: block; font-size: 0.95em; } .org-node span { font-size: 0.78em; color: var(--muted); }
+  .org-node.root { background: var(--red); border-color: var(--red); } .org-node.root b, .org-node.root span { color: #fff; }
+  .org-drop { width: 1px; height: 2cqi; background: var(--line); }
+  .org-row { display: flex; gap: 2.4cqi; justify-content: center; position: relative; padding-top: 2cqi; }
+  .org-row::before { content: ''; position: absolute; top: 0; left: 12%; right: 12%; border-top: 1px solid var(--line); }
+  .org-branch { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .org-branch::before { content: ''; width: 1px; height: 2cqi; background: var(--line); }
+  .org-kids { display: flex; flex-direction: column; gap: 0.6cqi; margin-top: 1cqi; }
+  .org-kids .org-node { padding: 0.6cqi 1.2cqi; border-style: dashed; }
+
 </style>
 </head>
 <body>
@@ -236,7 +279,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">2 / 10</span>
+    <span class="pg">2 / 15</span>
     <div class="body" style="position:relative;">
       <h2 class="headline">오늘 논의할 핵심 안건은 5가지입니다</h2>
       <div class="head-rule"></div>
@@ -285,7 +328,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">3 / 10</span>
+    <span class="pg">3 / 15</span>
     <div class="body">
       <h2 class="headline">시장은 연 18% 고성장 중이나 자사 점유율은 2년 연속 하락 중입니다</h2>
       <div class="head-rule"></div>
@@ -321,7 +364,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">4 / 10</span>
+    <span class="pg">4 / 15</span>
     <div class="body">
       <h2 class="headline">시장 매력도와 실행 가능성 기준으로 4개 영역의 투자 우선순위를 도출했습니다</h2>
       <div class="head-rule"></div>
@@ -359,7 +402,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">5 / 10</span>
+    <span class="pg">5 / 15</span>
     <div class="body">
       <h2 class="headline">3가지 성장 동력이 전체 가치 창출의 85%를 견인합니다</h2>
       <div class="head-rule"></div>
@@ -401,7 +444,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">6 / 10</span>
+    <span class="pg">6 / 15</span>
     <div class="body">
       <h2 class="headline">비용의 68%가 인건비와 외주비에 집중되어 구조적 전환이 필요합니다</h2>
       <div class="head-rule"></div>
@@ -445,7 +488,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">7 / 10</span>
+    <span class="pg">7 / 15</span>
     <div class="body">
       <h2 class="headline">품질은 업계 최고 수준이나 가격 경쟁력은 최하위권입니다</h2>
       <div class="head-rule"></div>
@@ -502,7 +545,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">8 / 10</span>
+    <span class="pg">8 / 15</span>
     <div class="body">
       <div class="reco-eyebrow">핵심 권고안</div>
       <h2 class="reco-headline">3가지 결정만으로 18개월 안에<br/>EBITDA 마진을 <span class="accent">+420bp</span> 끌어올릴 수 있습니다</h2>
@@ -541,7 +584,7 @@
   <section class="slide">
     <div class="top-bar"></div>
     <div class="top-meta"><span>AI ROASTING</span></div>
-    <span class="pg">9 / 10</span>
+    <span class="pg">9 / 15</span>
     <div class="body">
       <h2 class="headline">3대 과제 실행 시 2028년 EBITDA 마진 +420bp 개선이 가능합니다</h2>
       <div class="head-rule"></div>
@@ -602,6 +645,101 @@
       </div>
     </div>
     <div class="source">출처: 재무 모델링, 시나리오 분석 (Base Case)</div>
+  </section>
+
+
+  <!-- ━━ slides.hwpark.net 블록 카탈로그 adopt (2026-07-02) ━━━━━ -->
+
+  <section class="slide">
+    <div class="top-bar"></div>
+    <div class="top-meta"><span>AI ROASTING</span></div>
+    <span class="pg">10 / 15</span>
+    <div class="body">
+      <h2 class="headline">기술 검증 결과는 코드 블록으로 원문 그대로 제시합니다</h2>
+      <div class="head-rule"></div>
+      <div class="codeblk">
+        <div class="codeblk-bar">cost_model.sql</div>
+        <pre><span class="cm">-- 사업부별 단위 원가: 배부 기준은 §6 P&L 시뮬레이션과 동일</span>
+<span class="kw">SELECT</span> bu, gross_cost / NULLIF(units, 0) <span class="kw">AS</span> unit_cost
+<span class="kw">FROM</span> cost_ledger <span class="kw">WHERE</span> fy = <span class="st">'2026'</span>;</pre>
+      </div>
+    </div>
+    <div class="source">출처: slides.hwpark.net code 블록 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"></div>
+    <div class="top-meta"><span>AI ROASTING</span></div>
+    <span class="pg">11 / 15</span>
+    <div class="body">
+      <h2 class="headline">권고안 채택 전, 장단을 같은 지면 비중으로 검증했습니다</h2>
+      <div class="head-rule"></div>
+      <div class="pc">
+        <div class="pc-col plus"><h4>장점</h4><ul>
+          <li>3년 누적 ROI 2.8배 — 대안 대비 최고</li>
+          <li>기존 조직 역량으로 실행 가능합니다</li>
+          <li>18개월 내 손익분기 도달</li></ul></div>
+        <div class="pc-col minus"><h4>단점 · 리스크</h4><ul>
+          <li>초기 12개월 현금 소요가 큽니다</li>
+          <li>핵심 인력 2개 팀의 전환 배치 필요</li></ul></div>
+      </div>
+    </div>
+    <div class="source">출처: slides strategy-options 구조의 2열 파생</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"></div>
+    <div class="top-meta"><span>AI ROASTING</span></div>
+    <span class="pg">12 / 15</span>
+    <div class="body">
+      <h2 class="headline">실행 준비 상태를 3개 축으로 점검합니다</h2>
+      <div class="head-rule"></div>
+      <div class="ck">
+        <div class="ck-col accent"><h4>재무</h4><ul><li>예산 승인 완료</li><li>분기 배분 확정</li><li class="pending">비상 예비비 설정</li></ul></div>
+        <div class="ck-col"><h4>조직</h4><ul><li>실행 리더 선임</li><li class="pending">전담팀 충원</li><li class="pending">인센티브 정렬</li></ul></div>
+        <div class="ck-col"><h4>시스템</h4><ul><li>데이터 접근 권한</li><li>추적 대시보드</li><li class="pending">외부 벤더 계약</li></ul></div>
+      </div>
+    </div>
+    <div class="source">출처: slides checklist 블록 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"></div>
+    <div class="top-meta"><span>AI ROASTING</span></div>
+    <span class="pg">13 / 15</span>
+    <div class="body">
+      <h2 class="headline">현장 실사 증거 — 개선 전후가 한눈에 대비됩니다</h2>
+      <div class="head-rule"></div>
+      <div class="imgrid cols-3">
+        <figure><span class="tag">BEFORE</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23CC0000%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300253E%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20A%3C/text%3E%3C/svg%3E" alt=""/><figcaption>실사 1차 — 재고 적체 구간</figcaption></figure>
+        <figure><span class="tag accent">AFTER</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2300253E%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23101c28%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20B%3C/text%3E%3C/svg%3E" alt=""/><figcaption>개선 후 — 회전율 +22%</figcaption></figure>
+        <figure><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%239b0000%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300253E%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.5%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20C%3C/text%3E%3C/svg%3E" alt=""/><figcaption>베스트 프랙티스 매장</figcaption></figure>
+      </div>
+    </div>
+    <div class="source">출처: slides image-grid/compare 통합 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"></div>
+    <div class="top-meta"><span>AI ROASTING</span></div>
+    <span class="pg">14 / 15</span>
+    <div class="body">
+      <h2 class="headline">실행 거버넌스는 운영위 산하 3개 트랙으로 편성합니다</h2>
+      <div class="head-rule"></div>
+      <div class="org">
+        <div class="org-node root"><b>실행 운영위원회</b><span>격주 · CEO 주재</span></div>
+        <div class="org-drop"></div>
+        <div class="org-row">
+          <div class="org-branch"><div class="org-node"><b>수익성 트랙</b><span>비용 구조</span></div>
+            <div class="org-kids"><div class="org-node"><b>조달 TF</b></div><div class="org-node"><b>공정 TF</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>성장 트랙</b><span>신규 채널</span></div>
+            <div class="org-kids"><div class="org-node"><b>디지털 TF</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>PMI 트랙</b><span>인수 통합</span></div>
+            <div class="org-kids"><div class="org-node"><b>시너지 TF</b></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: slides org-tree 구조를 컨설팅 박스형으로 재설계</div>
   </section>
 
   <!-- ━━ 10. 마무리 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->

@@ -1453,6 +1453,35 @@
         color: var(--c-fg-3);
         font-size: 1.3vw;
       }
+    
+      /* ── adopted from slides.hwpark.net block catalog (2026-07-02) ── */
+      .adopt-code { background: var(--c-bg); border: 1px solid var(--c-line, #33406a); margin-top: 1.2vw; }
+      .adopt-code-bar { padding: 0.55vw 1vw; color: var(--c-gold, #c9a86a); font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); letter-spacing: 0.12em; border-bottom: 1px solid rgba(201,168,106,0.3); }
+      .adopt-code pre { margin: 0; padding: 1vw 1.2vw; color: var(--c-fg); font-family: 'IBM Plex Mono', monospace; font-size: 0.85vw; line-height: 1.8; white-space: pre-wrap; }
+      .adopt-code .cm { color: #8a96a8; } .adopt-code .kw { color: #c9a86a; } .adopt-code .st { color: #9fbf9f; }
+      .adopt-table { width: 100%; border-collapse: collapse; margin-top: 1.2vw; }
+      .adopt-table th { font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); letter-spacing: 0.1em; text-align: left; padding: 0.7vw 0.9vw; color: var(--c-gold, #c9a86a); border-bottom: 2px solid var(--c-gold, #c9a86a); font-weight: 600; }
+      .adopt-table td { padding: 0.65vw 0.9vw; font-size: 0.9vw; border-bottom: 1px solid rgba(78,90,110,0.35); }
+      .adopt-table tr.hl td { background: rgba(201,168,106,0.12); }
+      .adopt-table.striped tbody tr:nth-child(even) td { background: rgba(35,47,85,0.35); }
+      .adopt-imgrid { display: grid; gap: 1.2vw; margin-top: 1.2vw; }
+      .adopt-imgrid.cols-2 { grid-template-columns: 1fr 1fr; }
+      .adopt-imgrid figure { margin: 0; position: relative; }
+      .adopt-imgrid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid rgba(201,168,106,0.4); }
+      .adopt-imgrid figcaption { font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); color: var(--c-fg-2); margin-top: 0.5vw; letter-spacing: 0.08em; }
+      .adopt-imgrid .tag { position: absolute; top: 0.7vw; left: 0.7vw; font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); letter-spacing: 0.15em; color: var(--c-bg); background: var(--c-gold, #c9a86a); padding: 0.15vw 0.6vw; }
+      .adopt-mx2 { display: flex; gap: 0.8vw; align-items: stretch; margin-top: 1.2vw; }
+      .adopt-mx2-y { display: flex; align-items: center; } .adopt-mx2-y span { transform: rotate(-90deg); white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); letter-spacing: 0.15em; color: var(--c-fg-2); }
+      .adopt-mx2-main { flex: 1; }
+      .adopt-mx2-panel { position: relative; border: 1px solid rgba(201,168,106,0.4); display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 18vw; }
+      .adopt-mx2-panel::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--c-gold, #c9a86a); opacity: 0.6; }
+      .adopt-mx2-panel::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--c-gold, #c9a86a); opacity: 0.6; }
+      .adopt-mx2-cell { padding: 1vw; }
+      .adopt-mx2-cell.hot { background: rgba(201,168,106,0.1); }
+      .adopt-mx2-cell h4 { font-size: 0.95vw; margin: 0 0 0.5vw; color: var(--c-fg); } .adopt-mx2-cell.hot h4 { color: var(--c-gold, #c9a86a); }
+      .adopt-mx2-cell p { font-size: 0.8vw; color: var(--c-fg-2); margin: 0; line-height: 1.6; }
+      .adopt-mx2-x { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: var(--sz-label); letter-spacing: 0.15em; color: var(--c-fg-2); margin-top: 0.6vw; }
+
     </style>
   </head>
 
@@ -2303,6 +2332,84 @@
       </section>
 
       <!-- ═══════ SLIDE 15 · VERTICAL TIMELINE dark ═════════════════════════ -->
+      
+      <!-- ── slides.hwpark.net 블록 카탈로그 adopt (2026-07-02) ── -->
+
+      <section class="slide dark slide--adopt-code">
+        <div class="slide-chrome">
+          <span class="label" style="color: var(--c-fg-2)">[Appendix — Code]</span>
+          <span class="label" style="color: var(--c-fg-2)">17</span>
+        </div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="kicker">Reproducibility</div>
+          <h2 class="h2"><em>산출 로직</em>은 코드 원문으로 부록에 남깁니다</h2>
+          <div class="adopt-code">
+            <div class="adopt-code-bar">TIMELINE_MODEL.PY</div>
+            <pre><span class="cm"># 수직 타임라인(§15)의 구간 산정 — 문서 부록 표준</span>
+<span class="kw">def</span> era_bounds(events, pad=<span class="st">0.08</span>):
+    lo, hi = min(e.year <span class="kw">for</span> e <span class="kw">in</span> events), max(e.year <span class="kw">for</span> e <span class="kw">in</span> events)
+    <span class="kw">return</span> lo - (hi - lo) * pad, hi + (hi - lo) * pad</pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark slide--adopt-table">
+        <div class="slide-chrome">
+          <span class="label" style="color: var(--c-fg-2)">[Appendix — Table]</span>
+          <span class="label" style="color: var(--c-fg-2)">18</span>
+        </div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="kicker">Data Matrix</div>
+          <h2 class="h2">데이터 표 — <em>plain 헤더</em>와 줄무늬는 켜고 끌 수 있습니다</h2>
+          <table class="adopt-table striped">
+            <thead><tr><th>구분</th><th>1900–1945</th><th>1946–1991</th><th>1992–현재</th></tr></thead>
+            <tbody>
+              <tr><td>지배 매체</td><td>신문·라디오</td><td>텔레비전</td><td>네트워크</td></tr>
+              <tr class="hl"><td>전환 속도</td><td>세대 단위</td><td>10년 단위</td><td>연 단위</td></tr>
+              <tr><td>기록 형식</td><td>활자</td><td>영상</td><td>데이터</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="slide dark slide--adopt-imgrid">
+        <div class="slide-chrome">
+          <span class="label" style="color: var(--c-fg-2)">[Appendix — Plates]</span>
+          <span class="label" style="color: var(--c-fg-2)">19</span>
+        </div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="kicker">Figures</div>
+          <h2 class="h2">도판 대비 — <em>PLATE</em> 태그로 전거를 밝힙니다</h2>
+          <div class="adopt-imgrid cols-2">
+            <figure><span class="tag">PLATE I</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23232f55%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231c2644%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Georgia%22%20font-size%3D%2244%22%20fill%3D%22rgba%28240%2C236%2C227%2C0.55%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%224%22%3EPLATE%20I%3C/text%3E%3C/svg%3E" alt=""/><figcaption>FIG. 1 — 개정 전 판본</figcaption></figure>
+            <figure><span class="tag">PLATE II</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%231c2644%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2310182e%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Georgia%22%20font-size%3D%2244%22%20fill%3D%22rgba%28240%2C236%2C227%2C0.55%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%224%22%3EPLATE%20II%3C/text%3E%3C/svg%3E" alt=""/><figcaption>FIG. 2 — 개정 후 판본</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark slide--adopt-mx2">
+        <div class="slide-chrome">
+          <span class="label" style="color: var(--c-fg-2)">[Appendix — Matrix]</span>
+          <span class="label" style="color: var(--c-fg-2)">20</span>
+        </div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="kicker">Positioning</div>
+          <h2 class="h2">사분면 — <em>십자축</em>이 프레임을 만듭니다</h2>
+          <div class="adopt-mx2">
+            <div class="adopt-mx2-y"><span>영향력 ▲</span></div>
+            <div class="adopt-mx2-main">
+              <div class="adopt-mx2-panel">
+                <div class="adopt-mx2-cell hot"><h4>정전 (Canon)</h4><p>영향력 높고 접근 쉬움 — 강의의 축</p></div>
+                <div class="adopt-mx2-cell"><h4>심화 (Advanced)</h4><p>영향력 높으나 난해 — 세미나용</p></div>
+                <div class="adopt-mx2-cell"><h4>입문 (Primer)</h4><p>접근 쉬우나 배경 지식용</p></div>
+                <div class="adopt-mx2-cell"><h4>참고 (Reference)</h4><p>필요 시 각주로만</p></div>
+              </div>
+              <div class="adopt-mx2-x">접근성 ▶</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="slide dark slide--vtimeline">
         <!-- Chrome bar -->
         <div class="slide-chrome">

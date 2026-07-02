@@ -229,6 +229,48 @@
   }
 
   @media (max-width: 720px) { .nav-dots { bottom: 16px; padding: 8px 14px; gap: 8px; } }
+
+  /* --- adopted from slides.hwpark.net block catalog (2026-07-02) --- */
+  .codeblk { background: var(--green-dark); overflow: hidden; margin-top: 2cqi; }
+  .codeblk-bar { padding: 0.9cqi 1.4cqi; background: rgba(0,0,0,0.25); color: #a8d4bf; font-family: monospace; font-size: 0.85em; }
+  .codeblk pre { margin: 0; padding: 1.6cqi 1.8cqi; color: #e7f2ec; font-family: 'SF Mono', Consolas, monospace; font-size: 0.95em; line-height: 1.75; white-space: pre-wrap; }
+  .codeblk .cm { color: #7ba593; } .codeblk .kw { color: #a8d4bf; font-weight: 700; } .codeblk .st { color: #ffd9a0; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqi; margin-top: 2.4cqi; }
+  .pc-col { border: 1px solid var(--line); background: #fff; padding: 1.8cqi; }
+  .pc-col.plus { border-top: 0.45cqi solid var(--green); }
+  .pc-col.minus { border-top: 0.45cqi solid var(--gray); }
+  .pc-col h4 { font-size: 1.05em; font-weight: 700; margin-bottom: 1.2cqi; }
+  .pc-col.plus h4 { color: var(--green); }
+  .pc-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .pc-col li { font-size: 0.95em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .pc-col.plus li::before { content: "+"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .pc-col.minus li::before { content: "\2212"; position: absolute; left: 0; color: var(--muted); font-weight: 700; }
+  .ck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqi; margin-top: 2.4cqi; }
+  .ck-col { background: #fff; border: 1px solid var(--line); padding: 1.8cqi; }
+  .ck-col h4 { font-size: 1em; font-weight: 700; margin-bottom: 1.2cqi; color: var(--green-dark); }
+  .ck-col ul { list-style: none; display: flex; flex-direction: column; gap: 1cqi; }
+  .ck-col li { font-size: 0.9em; color: var(--muted); padding-left: 2cqi; position: relative; }
+  .ck-col li::before { content: "\2713"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .ck-col li.pending { opacity: 0.55; } .ck-col li.pending::before { content: "\25CB"; color: var(--gray); }
+  .imgrid { display: grid; gap: 2cqi; margin-top: 2.2cqi; }
+  .imgrid.cols-2 { grid-template-columns: 1fr 1fr; } .imgrid.cols-3 { grid-template-columns: repeat(3,1fr); } .imgrid.cols-4 { grid-template-columns: repeat(4,1fr); }
+  .imgrid figure { margin: 0; position: relative; display: flex; flex-direction: column; }
+  .imgrid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid var(--line); }
+  .imgrid figcaption { font-size: 0.8em; color: var(--muted); margin-top: 0.7cqi; }
+  .imgrid .tag { position: absolute; top: 1cqi; left: 1cqi; z-index: 2; font-size: 0.72em; font-weight: 700; letter-spacing: 0.12em; color: #fff; background: var(--green-dark); padding: 0.3cqi 0.9cqi; }
+  .imgrid .tag.accent { background: var(--green); }
+  .org { display: flex; flex-direction: column; align-items: center; margin-top: 2.4cqi; }
+  .org-node { border: 1px solid var(--line); background: #fff; padding: 1cqi 1.8cqi; text-align: center; }
+  .org-node b { display: block; font-size: 0.95em; } .org-node span { font-size: 0.78em; color: var(--muted); }
+  .org-node.root { background: var(--green-dark); border-color: var(--green-dark); } .org-node.root b, .org-node.root span { color: #fff; }
+  .org-drop { width: 1px; height: 2cqi; background: var(--line); }
+  .org-row { display: flex; gap: 2.4cqi; justify-content: center; position: relative; padding-top: 2cqi; }
+  .org-row::before { content: ''; position: absolute; top: 0; left: 12%; right: 12%; border-top: 1px solid var(--line); }
+  .org-branch { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .org-branch::before { content: ''; width: 1px; height: 2cqi; background: var(--line); }
+  .org-kids { display: flex; flex-direction: column; gap: 0.6cqi; margin-top: 1cqi; }
+  .org-kids .org-node { padding: 0.6cqi 1.2cqi; border-style: dashed; }
+
 </style>
 </head>
 <body>
@@ -256,7 +298,7 @@
   <!-- ======================== SLIDE 2: 목차 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">2 / 10</span>
+    <span class="pg">2 / 15</span>
     <div class="body">
       <h2 class="headline">다섯 가지 핵심 주제로 전략 윤곽을 잡습니다</h2>
       <div class="head-rule"></div>
@@ -306,7 +348,7 @@
   <!-- ======================== SLIDE 3: 시장 환경 개요 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">3 / 10</span>
+    <span class="pg">3 / 15</span>
     <div class="body">
       <h2 class="headline">세 가지 구조적 변화가 시장 규칙을 재편하고 있습니다</h2>
       <div class="head-rule"></div>
@@ -345,7 +387,7 @@
   <!-- ======================== SLIDE 4: 포트폴리오 매트릭스 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">4 / 10</span>
+    <span class="pg">4 / 15</span>
     <div class="body">
       <h2 class="headline">포트폴리오 60%가 시장 성장률 하회, 자본 재배치가 시급합니다</h2>
       <div class="head-rule"></div>
@@ -385,7 +427,7 @@
   <!-- ======================== SLIDE 5: 사업별 상세 분석 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">5 / 10</span>
+    <span class="pg">5 / 15</span>
     <div class="body">
       <h2 class="headline">사업 A·B만 성장과 수익성을 동시에 확보하고 있습니다</h2>
       <div class="head-rule"></div>
@@ -448,7 +490,7 @@
   <!-- ======================== SLIDE 6: 성장 기회 식별 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">6 / 10</span>
+    <span class="pg">6 / 15</span>
     <div class="body">
       <h2 class="headline">세 가지 신규 시장이 향후 5년 성장 70%를 좌우합니다</h2>
       <div class="head-rule"></div>
@@ -484,7 +526,7 @@
   <!-- ======================== SLIDE 7: 자본 배분 전략 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">7 / 10</span>
+    <span class="pg">7 / 15</span>
     <div class="body">
       <h2 class="headline">자본 65%를 성장 사업에 집중 재배치합니다</h2>
       <div class="head-rule"></div>
@@ -541,7 +583,7 @@
   <!-- ======================== SLIDE 8: 핵심 인사이트 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">8 / 10</span>
+    <span class="pg">8 / 15</span>
     <div class="body">
       <div class="key-eyebrow">핵심 인사이트</div>
       <p class="key-quote">"승자는 더 잘하는 회사가 아니라,<br/><span class="accent">다른 게임을 선택한</span> 회사입니다"</p>
@@ -577,7 +619,7 @@
   <!-- ======================== SLIDE 9: 실행 로드맵 ======================== -->
   <section class="slide">
     <div class="top-bar"><span>AI ROASTING</span></div>
-    <span class="pg">9 / 10</span>
+    <span class="pg">9 / 15</span>
     <div class="body">
       <h2 class="headline">4단계 로드맵으로 전략을 실행으로 전환합니다</h2>
       <div class="head-rule"></div>
@@ -630,6 +672,98 @@
       </div>
     </div>
     <div class="source">출처: 전략기획팀 실행 계획 (2026.Q2)</div>
+  </section>
+
+
+  <!-- ======================== slides.hwpark.net adopt (2026-07-02) ======================== -->
+
+  <section class="slide">
+    <div class="top-bar"><span>AI ROASTING</span></div>
+    <span class="pg">10 / 15</span>
+    <div class="body">
+      <h2 class="headline">분석 재현성은 코드 블록이 보증합니다</h2>
+      <div class="head-rule"></div>
+      <p class="head-sub">성장-점유율 매트릭스(§4)의 산출 로직 원문</p>
+      <div class="codeblk">
+        <div class="codeblk-bar">portfolio_matrix.r</div>
+        <pre><span class="cm"># 상대점유율 = 자사 점유율 / 최대 경쟁사 점유율</span>
+matrix <- portfolio |>
+  mutate(rel_share = share / max_rival,
+         quadrant  = <span class="kw">case_when</span>(growth > <span class="st">0.10</span> & rel_share > <span class="st">1</span> ~ <span class="st">"Star"</span>, TRUE ~ <span class="st">"..."</span>))</pre>
+      </div>
+    </div>
+    <div class="source">출처: slides.hwpark.net code 블록 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"><span>AI ROASTING</span></div>
+    <span class="pg">11 / 15</span>
+    <div class="body">
+      <h2 class="headline">자본 재배분안의 장단을 동일 비중으로 검토했습니다</h2>
+      <div class="head-rule"></div>
+      <div class="pc">
+        <div class="pc-col plus"><h4>장점</h4><ul>
+          <li>Star 사업부 재투자 수익률이 자본비용을 상회합니다</li>
+          <li>Dog 사업부 매각 대금이 전환 재원을 충당합니다</li>
+          <li>포트폴리오 리스크가 분산됩니다</li></ul></div>
+        <div class="pc-col minus"><h4>단점 · 유의</h4><ul>
+          <li>매각 협상 기간 중 인력 이탈 리스크</li>
+          <li>Question Mark 사업부 판단은 2분기 재검토 필요</li></ul></div>
+      </div>
+    </div>
+    <div class="source">출처: slides strategy-options 구조의 2열 파생</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"><span>AI ROASTING</span></div>
+    <span class="pg">12 / 15</span>
+    <div class="body">
+      <h2 class="headline">포트폴리오 전환 준비 상태 점검</h2>
+      <div class="head-rule"></div>
+      <div class="ck">
+        <div class="ck-col"><h4>매각 준비</h4><ul><li>대상 사업부 확정</li><li>자문사 선정</li><li class="pending">데이터룸 구축</li></ul></div>
+        <div class="ck-col"><h4>재투자</h4><ul><li>Star 증설 계획 승인</li><li class="pending">채용 계획 확정</li></ul></div>
+        <div class="ck-col"><h4>이사회</h4><ul><li>1차 보고 완료</li><li class="pending">최종 의결 상정</li></ul></div>
+      </div>
+    </div>
+    <div class="source">출처: slides checklist 블록 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"><span>AI ROASTING</span></div>
+    <span class="pg">13 / 15</span>
+    <div class="body">
+      <h2 class="headline">사업 현장 실사 — 전후 대비와 벤치마크</h2>
+      <div class="head-rule"></div>
+      <div class="imgrid cols-3">
+        <figure><span class="tag">BEFORE</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23177B55%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230E5439%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.55%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20A%3C/text%3E%3C/svg%3E" alt=""/><figcaption>통합 전 생산 라인</figcaption></figure>
+        <figure><span class="tag accent">AFTER</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230E5439%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23062e1f%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.55%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20B%3C/text%3E%3C/svg%3E" alt=""/><figcaption>통합 후 — 가동률 91%</figcaption></figure>
+        <figure><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23a8d4bf%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23177B55%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2246%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.55%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%223%22%3EPHOTO%20C%3C/text%3E%3C/svg%3E" alt=""/><figcaption>업계 선도 사례</figcaption></figure>
+      </div>
+    </div>
+    <div class="source">출처: slides image-grid/compare 통합 adopt</div>
+  </section>
+
+  <section class="slide">
+    <div class="top-bar"><span>AI ROASTING</span></div>
+    <span class="pg">14 / 15</span>
+    <div class="body">
+      <h2 class="headline">포트폴리오 전환 조직 구조</h2>
+      <div class="head-rule"></div>
+      <div class="org">
+        <div class="org-node root"><b>포트폴리오 위원회</b><span>이사회 직속</span></div>
+        <div class="org-drop"></div>
+        <div class="org-row">
+          <div class="org-branch"><div class="org-node"><b>매각 실사단</b><span>Divest</span></div>
+            <div class="org-kids"><div class="org-node"><b>재무 실사</b></div><div class="org-node"><b>법무</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>성장 투자단</b><span>Invest</span></div>
+            <div class="org-kids"><div class="org-node"><b>증설 PMO</b></div></div></div>
+          <div class="org-branch"><div class="org-node"><b>운영 개선단</b><span>Improve</span></div>
+            <div class="org-kids"><div class="org-node"><b>린 운영 TF</b></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: slides org-tree 구조를 컨설팅 박스형으로 재설계</div>
   </section>
 
   <!-- ======================== SLIDE 10: 마무리 ======================== -->

@@ -713,6 +713,49 @@
                 gap: 3vh;
             }
         }
+    
+        /* --- adopted from slides.hwpark.net block catalog (2026-07-02) --- */
+        .adopt-code { background: #2e2c29; margin-top: 24px; }
+        .adopt-code-bar { padding: 10px 16px; color: var(--bg-secondary); font-family: monospace; font-size: 12px; letter-spacing: 0.1em; border-bottom: 1px solid rgba(226,219,209,0.2); }
+        .adopt-code pre { margin: 0; padding: 18px 20px; color: #e8e2d8; font-family: 'SF Mono', Consolas, monospace; font-size: 13px; line-height: 1.8; white-space: pre-wrap; }
+        .adopt-code .cm { color: #8a8178; } .adopt-code .kw { color: #c9bfa8; font-weight: 600; } .adopt-code .st { color: #a8b89a; }
+        .adopt-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+        .adopt-table th { text-align: left; padding: 12px 14px; font-size: 13px; letter-spacing: 0.06em; color: var(--text-primary); border-bottom: 2px solid var(--text-primary); font-weight: 600; }
+        .adopt-table td { padding: 11px 14px; font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--line); }
+        .adopt-table tr.hl td { background: var(--bg-secondary); color: var(--text-primary); }
+        .adopt-pc { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        .adopt-pc-col { border-top: 3px solid var(--text-primary); padding-top: 16px; }
+        .adopt-pc-col.minus { border-top-color: var(--line); }
+        .adopt-pc-col h4 { font-size: 15px; margin: 0 0 12px; }
+        .adopt-pc-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .adopt-pc-col li { font-size: 14px; color: var(--text-secondary); padding-left: 20px; position: relative; }
+        .adopt-pc-col.plus li::before { content: "+"; position: absolute; left: 0; font-weight: 700; color: var(--text-primary); }
+        .adopt-pc-col.minus li::before { content: "\2212"; position: absolute; left: 0; font-weight: 700; color: var(--accent); }
+        .adopt-ck { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+        .adopt-ck-col { background: var(--bg-secondary); padding: 20px; }
+        .adopt-ck-col h4 { font-size: 14px; margin: 0 0 12px; }
+        .adopt-ck-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+        .adopt-ck-col li { font-size: 13px; color: var(--text-secondary); padding-left: 20px; position: relative; }
+        .adopt-ck-col li::before { content: "\2713"; position: absolute; left: 0; color: var(--text-primary); font-weight: 700; }
+        .adopt-ck-col li.pending { opacity: 0.55; } .adopt-ck-col li.pending::before { content: "\25CB"; color: var(--accent); }
+        .adopt-imgrid { display: grid; gap: 20px; margin-top: 24px; }
+        .adopt-imgrid.cols-2 { grid-template-columns: 1fr 1fr; }
+        .adopt-imgrid figure { margin: 0; position: relative; }
+        .adopt-imgrid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+        .adopt-imgrid figcaption { font-size: 12px; color: var(--text-secondary); margin-top: 8px; letter-spacing: 0.04em; }
+        .adopt-imgrid .tag { position: absolute; top: 10px; left: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--bg-primary); background: var(--text-primary); padding: 3px 9px; }
+        .adopt-mx2 { display: flex; gap: 12px; margin-top: 24px; align-items: stretch; }
+        .adopt-mx2-y { display: flex; align-items: center; } .adopt-mx2-y span { transform: rotate(-90deg); white-space: nowrap; font-size: 11px; letter-spacing: 0.14em; color: var(--text-secondary); font-weight: 600; }
+        .adopt-mx2-main { flex: 1; }
+        .adopt-mx2-panel { position: relative; border: 1px solid var(--line); background: var(--bg-primary); display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 300px; }
+        .adopt-mx2-panel::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--text-primary); opacity: 0.35; }
+        .adopt-mx2-panel::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--text-primary); opacity: 0.35; }
+        .adopt-mx2-cell { padding: 18px; }
+        .adopt-mx2-cell.hot { background: var(--bg-secondary); }
+        .adopt-mx2-cell h4 { font-size: 14px; margin: 0 0 8px; }
+        .adopt-mx2-cell p { font-size: 12.5px; color: var(--text-secondary); margin: 0; line-height: 1.6; }
+        .adopt-mx2-x { text-align: center; font-size: 11px; letter-spacing: 0.14em; color: var(--text-secondary); font-weight: 600; margin-top: 10px; }
+
     </style>
 </head>
 <body>
@@ -954,6 +997,102 @@
                         <div class="member-photo">정</div>
                         <h4>정수아</h4>
                         <span>디자인 프린시플</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- slides.hwpark.net 블록 카탈로그 adopt (2026-07-02) -->
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">부록 — 코드</div>
+                    <h2>산출 로직은 원문으로 남깁니다</h2>
+                </div>
+                <div class="adopt-code">
+                    <div class="adopt-code-bar">forecast.py</div>
+                    <pre><span class="cm"># 라인 차트(§7)의 추세 산정 — 부록 표준</span>
+<span class="kw">def</span> trend(series, window=<span class="st">4</span>):
+    <span class="kw">return</span> series.rolling(window).mean().iloc[-1]</pre>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">부록 — 표</div>
+                    <h2>데이터는 표로 정리합니다</h2>
+                </div>
+                <table class="adopt-table">
+                    <thead><tr><th>항목</th><th>2024</th><th>2025</th><th>2026 계획</th></tr></thead>
+                    <tbody>
+                        <tr><td>프로젝트 수</td><td>18</td><td>24</td><td>30</td></tr>
+                        <tr class="hl"><td>고객 유지율</td><td>87%</td><td>92%</td><td>94%</td></tr>
+                        <tr><td>평균 리드타임</td><td>9주</td><td>7주</td><td>6주</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">검토</div>
+                    <h2>제안의 장단을 함께 보십시오</h2>
+                </div>
+                <div class="adopt-pc">
+                    <div class="adopt-pc-col plus"><h4>장점</h4><ul>
+                        <li>기존 팀 구조를 유지한 채 도입할 수 있습니다</li>
+                        <li>첫 분기부터 리드타임이 단축됩니다</li>
+                    </ul></div>
+                    <div class="adopt-pc-col minus"><h4>단점</h4><ul>
+                        <li>초기 온보딩 기간 2주가 필요합니다</li>
+                        <li>소규모 프로젝트에는 과할 수 있습니다</li>
+                    </ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">점검</div>
+                    <h2>진행 상황을 확인합니다</h2>
+                </div>
+                <div class="adopt-ck">
+                    <div class="adopt-ck-col"><h4>준비</h4><ul><li>범위 합의</li><li>킥오프 완료</li></ul></div>
+                    <div class="adopt-ck-col"><h4>실행</h4><ul><li>1차 산출물 전달</li><li class="pending">중간 검토 회의</li></ul></div>
+                    <div class="adopt-ck-col"><h4>마무리</h4><ul><li class="pending">최종 보고</li><li class="pending">이관 문서</li></ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">도판</div>
+                    <h2>전후 비교는 나란히 놓습니다</h2>
+                </div>
+                <div class="adopt-imgrid cols-2">
+                    <figure><span class="tag">BEFORE</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238a8178%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235a5a5a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2244%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.6%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%224%22%3EFIGURE%20A%3C/text%3E%3C/svg%3E" alt=""/><figcaption>그림 A — 개편 전 프로세스</figcaption></figure>
+                    <figure><span class="tag">AFTER</span><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22500%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%235a5a5a%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232e2c29%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22400%22%20y%3D%22250%22%20font-family%3D%22Inter%22%20font-size%3D%2244%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.6%29%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20letter-spacing%3D%224%22%3EFIGURE%20B%3C/text%3E%3C/svg%3E" alt=""/><figcaption>그림 B — 개편 후 프로세스</figcaption></figure>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide-adopt">
+            <div class="content">
+                <div class="header">
+                    <div class="label">포지셔닝</div>
+                    <h2>우선순위는 사분면으로 정합니다</h2>
+                </div>
+                <div class="adopt-mx2">
+                    <div class="adopt-mx2-y"><span>가치 ▲</span></div>
+                    <div class="adopt-mx2-main">
+                        <div class="adopt-mx2-panel">
+                            <div class="adopt-mx2-cell hot"><h4>지금 합니다</h4><p>가치 높고 노력 적음</p></div>
+                            <div class="adopt-mx2-cell"><h4>계획에 넣습니다</h4><p>가치 높으나 노력 큼</p></div>
+                            <div class="adopt-mx2-cell"><h4>틈틈이</h4><p>노력 적으나 가치 보통</p></div>
+                            <div class="adopt-mx2-cell"><h4>하지 않습니다</h4><p>가치 낮고 노력 큼</p></div>
+                        </div>
+                        <div class="adopt-mx2-x">노력 ▶</div>
                     </div>
                 </div>
             </div>
