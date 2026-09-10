@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>커니 퍼플 - AI ROASTING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  :root {
+    --purple: #7823DC; --plum: #3B1466; --lilac: #EFE6FB;
+    --ink: #1B1530; --graphite: #6B6580; --line: #DDD8E8;
+    --soft: #F7F5FB; --paper: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #edeaf2;
+    font-family: 'Pretendard Variable', 'Pretendard', 'Inter', 'Apple SD Gothic Neo', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+
+  .deck { max-width: 1200px; margin: 40px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 28px; }
+  .slide {
+    aspect-ratio: 16 / 10;
+    background: var(--paper);
+    box-shadow: 0 30px 60px -30px rgba(59,20,102,0.35);
+    position: relative;
+    overflow: hidden;
+    container-type: inline-size;
+    font-size: clamp(8px, 1.05cqi, 16px);
+  }
+
+  /* ── 공통 시그니처: 좌측 퍼플 레일 + 챕터 트래커 + 푸터 ── */
+  .rail { position: absolute; top: 0; bottom: 0; left: 0; width: 1.6cqi; background: var(--purple); }
+  .tracker { position: absolute; top: 3.2cqi; right: 5cqi; display: flex; gap: 0.6cqi; align-items: center; }
+  .tracker span { font-size: 0.78em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); padding-bottom: 0.4cqi; border-bottom: 0.25cqi solid var(--line); min-width: 6cqi; text-align: center; }
+  .tracker span.on { color: var(--purple); border-bottom-color: var(--purple); }
+  .lockup { position: absolute; top: 3.2cqi; left: 6cqi; font-size: 0.85em; letter-spacing: 0.25em; font-weight: 700; color: var(--plum); }
+  .foot { position: absolute; left: 6cqi; right: 5cqi; bottom: 2.6cqi; display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.2cqi; border-top: 1px solid var(--line); font-size: 0.78em; color: var(--graphite); }
+  .foot .pg { letter-spacing: 0.18em; }
+
+  /* ── 표지 ── */
+  .cover { height: 100%; display: grid; grid-template-columns: 38fr 62fr; }
+  .cover-panel { background: var(--purple); color: #fff; padding: 6cqi 4cqi 5cqi 5cqi; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover-panel .brand { font-size: 0.95em; letter-spacing: 0.3em; font-weight: 700; }
+  .cover-panel .chapters { display: flex; flex-direction: column; gap: 1.6cqi; }
+  .cover-panel .ch { display: flex; gap: 1.4cqi; align-items: baseline; border-top: 1px solid rgba(255,255,255,0.35); padding-top: 1.2cqi; }
+  .cover-panel .ch b { font-size: 2.2cqi; font-weight: 300; line-height: 1; min-width: 3.4cqi; }
+  .cover-panel .ch div { font-size: 1.05em; line-height: 1.5; }
+  .cover-panel .ch small { display: block; font-size: 0.82em; opacity: 0.8; margin-top: 0.2cqi; }
+  .cover-panel .meta { font-size: 0.82em; letter-spacing: 0.2em; line-height: 2; opacity: 0.9; }
+  .cover-main { padding: 6cqi 5cqi 5cqi 5cqi; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover-eye { font-size: 0.85em; letter-spacing: 0.3em; color: var(--graphite); font-weight: 600; }
+  .cover h1 { font-size: 5.6cqi; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--plum); }
+  .cover h1 .num { font-weight: 300; color: var(--purple); }
+  .cover-sub { color: var(--graphite); margin-top: 2.4cqi; font-size: 1.35em; line-height: 1.6; max-width: 34em; }
+  .cover-foot { display: flex; justify-content: space-between; align-items: end; padding-top: 1.6cqi; border-top: 1px solid var(--line); font-size: 0.82em; letter-spacing: 0.2em; color: var(--graphite); line-height: 2; }
+
+  /* ── 본문 공통 ── */
+  .body { padding: 7.2cqi 5cqi 8cqi 6cqi; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+  .headline { font-size: 2.5cqi; font-weight: 700; line-height: 1.3; color: var(--plum); letter-spacing: -0.025em; padding-left: 1.6cqi; border-left: 0.45cqi solid var(--purple); }
+  .lead { font-size: 1.05em; color: var(--graphite); margin-top: 1.1cqi; padding-left: 2.05cqi; line-height: 1.6; }
+  .big { font-weight: 300; letter-spacing: -0.03em; line-height: 1; color: var(--plum); }
+  .big .u { font-size: 0.5em; font-weight: 500; color: var(--graphite); margin-left: 0.2em; }
+  .label { font-size: 0.8em; letter-spacing: 0.2em; font-weight: 600; color: var(--graphite); }
+  .source { position: absolute; left: 6cqi; bottom: 2.6cqi; font-size: 0.78em; color: var(--graphite); padding-top: 1.2cqi; }
+
+  /* ── 요약 (슬라이드 2) ── */
+  .summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3cqi; margin-top: 3.2cqi; flex: 1; }
+  .msg { display: flex; flex-direction: column; border-top: 1px solid var(--line); padding-top: 1.8cqi; }
+  .msg .big { font-size: 5.6cqi; }
+  .msg .msg-t { font-size: 1.4cqi; font-weight: 700; color: var(--ink); margin-top: 1.4cqi; letter-spacing: -0.02em; line-height: 1.35; }
+  .msg p { font-size: 1em; color: var(--graphite); line-height: 1.7; margin-top: 1cqi; }
+  .msg .label { margin-top: auto; padding-top: 1.4cqi; }
+  .msg.key { background: var(--lilac); border-top: 0.45cqi solid var(--purple); padding: 1.8cqi 2cqi 2cqi; }
+  .msg.key .big { color: var(--purple); }
+
+  /* ── KPI (슬라이드 3) ── */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3.4cqi; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .kpi { padding: 2.4cqi 2cqi 2.2cqi 0; border-right: 1px solid var(--line); margin-right: 2cqi; }
+  .kpi:last-child { border-right: none; margin-right: 0; }
+  .kpi .big { font-size: 4.4cqi; }
+  .kpi .label { margin-top: 1cqi; display: block; }
+  .kpi .note { font-size: 0.92em; color: var(--graphite); margin-top: 0.6cqi; line-height: 1.5; }
+  .kpi .chip { display: inline-block; margin-top: 1cqi; font-size: 0.8em; font-weight: 600; padding: 0.35cqi 0.9cqi; border-radius: 999px; background: var(--lilac); color: var(--purple); }
+  .kpi .chip.warn { background: var(--soft); color: var(--graphite); }
+  .conc { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3cqi; }
+  .conc-box { padding: 1.8cqi 2.2cqi; border-left: 0.45cqi solid var(--purple); background: var(--soft); }
+  .conc-box h4 { font-size: 0.8em; letter-spacing: 0.2em; font-weight: 600; color: var(--purple); margin-bottom: 0.9cqi; }
+  .conc-box p { font-size: 1.05em; line-height: 1.7; color: var(--ink); }
+
+  /* ── 브리지 차트 (슬라이드 4) ── */
+  .bridge-wrap { display: grid; grid-template-columns: 3fr 1.15fr; gap: 3.5cqi; margin-top: 3cqi; flex: 1; }
+  .bridge { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.6cqi; align-items: end; padding: 0 1cqi; border-bottom: 1px solid var(--ink); }
+  .bar-col { position: relative; height: 34cqi; }
+  .bar { position: absolute; left: 0; right: 0; background: var(--purple); }
+  .bar.base { background: var(--graphite); }
+  .bar.total { background: var(--plum); }
+  .bar-v { position: absolute; left: 0; right: 0; text-align: center; font-size: 1.3cqi; font-weight: 300; color: var(--plum); letter-spacing: -0.02em; }
+  .bar-v.on { color: var(--purple); font-weight: 500; }
+  .bar-l { position: absolute; left: 0; right: 0; top: 100%; margin-top: 1cqi; text-align: center; font-size: 0.85em; color: var(--graphite); font-weight: 600; letter-spacing: 0.05em; }
+  .bar-l b { display: block; color: var(--ink); font-weight: 600; letter-spacing: 0; font-size: 1.05em; margin-bottom: 0.2cqi; }
+  .link { position: absolute; height: 0; border-top: 1px dashed var(--line); }
+  .bridge-side { display: flex; flex-direction: column; justify-content: center; gap: 1.8cqi; }
+  .side-row { display: flex; justify-content: space-between; align-items: baseline; padding: 1cqi 0; border-bottom: 1px solid var(--line); }
+  .side-row .n { font-size: 1.05em; font-weight: 600; color: var(--ink); }
+  .side-row .v { font-size: 1.6cqi; font-weight: 300; color: var(--purple); letter-spacing: -0.02em; }
+  .side-row.sum .v { font-weight: 600; color: var(--plum); }
+  .side-row.sum { border-bottom: 2px solid var(--plum); }
+
+  /* ── 방안 평가표 (슬라이드 5) ── */
+  .eval { width: 100%; border-collapse: collapse; margin-top: 3cqi; }
+  .eval th, .eval td { padding: 1.35cqi 1.2cqi; font-size: 1em; text-align: center; border-bottom: 1px solid var(--line); }
+  .eval th { font-size: 0.8em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); border-bottom: 2px solid var(--plum); }
+  .eval th:first-child, .eval td:first-child { text-align: left; }
+  .eval td:first-child { font-weight: 600; color: var(--ink); }
+  .eval td:first-child small { display: block; font-weight: 400; color: var(--graphite); font-size: 0.88em; margin-top: 0.2cqi; }
+  .eval tr.pick td { background: var(--lilac); }
+  .eval tr.pick td:first-child { border-left: 0.45cqi solid var(--purple); }
+  .ball { display: inline-block; width: 2cqi; height: 2cqi; border-radius: 50%; border: 0.16cqi solid var(--purple); background: conic-gradient(var(--purple) 0 var(--f), transparent var(--f) 100%); vertical-align: middle; }
+  .eval td.tot { font-weight: 300; font-size: 1.7cqi; color: var(--plum); letter-spacing: -0.02em; }
+  .eval tr.pick td.tot { color: var(--purple); font-weight: 500; }
+  .eval-legend { margin-top: 1.6cqi; display: flex; gap: 2.4cqi; align-items: center; font-size: 0.85em; color: var(--graphite); }
+  .eval-legend .ball { width: 1.3cqi; height: 1.3cqi; margin-right: 0.5cqi; }
+
+  /* ── 로드맵 (슬라이드 6) ── */
+  .road { display: grid; grid-template-columns: 1fr 1.6fr 2.4fr; gap: 0.8cqi; margin-top: 3cqi; }
+  .phase-h { background: var(--lilac); color: var(--plum); padding: 1.2cqi 1.6cqi; position: relative; font-weight: 700; font-size: 1.15cqi; letter-spacing: -0.01em; }
+  .phase-h.on { background: var(--purple); color: #fff; }
+  .phase-h small { display: block; font-size: 0.78em; font-weight: 500; letter-spacing: 0.15em; opacity: 0.8; margin-bottom: 0.3cqi; }
+  .phase-h::after { content: ''; position: absolute; right: -1.2cqi; top: 0; border-top: 2.2cqi solid transparent; border-bottom: 2.2cqi solid transparent; border-left: 1.2cqi solid var(--lilac); z-index: 2; }
+  .phase-h.on::after { border-left-color: var(--purple); }
+  .phase-h.last::after { display: none; }
+  .phase-b { padding: 1.4cqi 1.6cqi 0; border-right: 1px dashed var(--line); }
+  .phase-b:last-child { border-right: none; }
+  .phase-b .label { display: block; margin-bottom: 0.8cqi; }
+  .phase-b ul { list-style: none; }
+  .phase-b li { position: relative; padding-left: 1.4cqi; font-size: 0.98em; color: var(--ink); line-height: 1.55; margin-bottom: 0.7cqi; }
+  .phase-b li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 0.55cqi; height: 0.55cqi; background: var(--purple); }
+  .phase-b .gate { margin-top: 1cqi; padding: 0.9cqi 1.2cqi; border: 1px solid var(--line); font-size: 0.85em; color: var(--graphite); }
+  .phase-b .gate b { color: var(--purple); font-weight: 600; margin-right: 0.6cqi; }
+  .road-total { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.4cqi; border-top: 2px solid var(--plum); }
+  .road-total .n { font-size: 1.05em; font-weight: 600; }
+  .road-total .big { font-size: 2.6cqi; color: var(--purple); }
+
+  /* ── 현재 vs 목표 (슬라이드 7) ── */
+  .cmp { margin-top: 3cqi; flex: 1; display: flex; flex-direction: column; }
+  .cmp-h { display: grid; grid-template-columns: 2.4fr 1fr 1cqi 1fr 1fr; gap: 1.6cqi; padding-bottom: 0.9cqi; border-bottom: 2px solid var(--plum); }
+  .cmp-h span { font-size: 0.8em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); }
+  .cmp-h span.to { color: var(--purple); }
+  .cmp-r { display: grid; grid-template-columns: 2.4fr 1fr 1cqi 1fr 1fr; gap: 1.6cqi; align-items: center; padding: 1.35cqi 0; border-bottom: 1px solid var(--line); }
+  .cmp-r .k { font-weight: 600; color: var(--ink); font-size: 1.05em; }
+  .cmp-r .k small { display: block; font-weight: 400; color: var(--graphite); font-size: 0.85em; margin-top: 0.15cqi; }
+  .cmp-r .from { font-size: 1.9cqi; font-weight: 300; color: var(--graphite); letter-spacing: -0.02em; }
+  .cmp-r .arrow { width: 1cqi; height: 1px; background: var(--line); position: relative; }
+  .cmp-r .arrow::after { content: ''; position: absolute; right: -0.1cqi; top: -0.35cqi; border-top: 0.36cqi solid transparent; border-bottom: 0.36cqi solid transparent; border-left: 0.5cqi solid var(--purple); }
+  .cmp-r .to { font-size: 1.9cqi; font-weight: 500; color: var(--purple); letter-spacing: -0.02em; }
+  .cmp-r .d { font-size: 0.95em; color: var(--graphite); }
+  .cmp-r .d b { color: var(--plum); font-weight: 600; }
+
+  /* ── 리스크 히트맵 (슬라이드 8) ── */
+  .heat-wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 3.5cqi; margin-top: 3cqi; flex: 1; }
+  .heat { display: grid; grid-template-columns: 3cqi repeat(3, 1fr); grid-template-rows: repeat(3, 1fr) 3cqi; gap: 0.5cqi; }
+  .heat .ay { writing-mode: vertical-rl; text-orientation: upright; display: flex; align-items: center; justify-content: center; font-size: 0.78em; letter-spacing: 0.12em; font-weight: 600; color: var(--graphite); }
+  .heat .ax { grid-column: 2 / span 3; text-align: center; font-size: 0.78em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); padding-top: 0.6cqi; }
+  .cell { padding: 1cqi; display: flex; flex-direction: column; gap: 0.5cqi; justify-content: flex-start; min-height: 8.6cqi; }
+  .cell.l1 { background: var(--soft); }
+  .cell.l2 { background: var(--lilac); }
+  .cell.l3 { background: #D7BEF6; }
+  .cell.l4 { background: var(--purple); }
+  .risk { display: inline-flex; align-items: center; gap: 0.5cqi; font-size: 0.85em; font-weight: 600; color: var(--ink); background: #fff; padding: 0.35cqi 0.8cqi; border: 1px solid var(--line); align-self: flex-start; }
+  .risk b { font-weight: 700; color: var(--purple); }
+  .cell.l4 .risk { border-color: transparent; }
+  .risk-list { display: flex; flex-direction: column; justify-content: center; }
+  .risk-row { display: flex; gap: 1.2cqi; padding: 1cqi 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .risk-row b { font-size: 1.6cqi; font-weight: 300; color: var(--purple); min-width: 2.4cqi; }
+  .risk-row .n { font-weight: 600; color: var(--ink); font-size: 1em; }
+  .risk-row .m { font-size: 0.9em; color: var(--graphite); line-height: 1.5; margin-top: 0.2cqi; }
+
+  /* ── 투자 회수 (슬라이드 9) ── */
+  .case-wrap { display: grid; grid-template-columns: 2fr 1fr; gap: 3.5cqi; margin-top: 3cqi; flex: 1; }
+  .case { width: 100%; border-collapse: collapse; align-self: start; }
+  .case th, .case td { padding: 1.2cqi 1.4cqi; text-align: right; font-size: 1em; border-bottom: 1px solid var(--line); }
+  .case th:first-child, .case td:first-child { text-align: left; }
+  .case thead th { font-size: 0.8em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); border-bottom: 2px solid var(--plum); }
+  .case td:first-child { font-weight: 600; color: var(--ink); }
+  .case td.hi { color: var(--purple); font-weight: 600; }
+  .case tr.sum td { border-bottom: 2px solid var(--plum); font-weight: 600; }
+  .case tr.sum td.hi { font-weight: 300; font-size: 1.6cqi; letter-spacing: -0.02em; }
+  .payback { background: var(--purple); color: #fff; padding: 2.6cqi 2.4cqi; display: flex; flex-direction: column; justify-content: center; }
+  .payback .label { color: #fff; opacity: 0.85; }
+  .payback .big { color: #fff; font-size: 6cqi; margin-top: 1cqi; }
+  .payback .big .u { color: #fff; opacity: 0.85; }
+  .payback p { margin-top: 1.4cqi; font-size: 1em; line-height: 1.65; opacity: 0.95; }
+  .payback .row { margin-top: 1.6cqi; padding-top: 1.2cqi; border-top: 1px solid rgba(255,255,255,0.4); display: flex; justify-content: space-between; font-size: 0.95em; }
+  .payback .row b { font-weight: 600; }
+
+  /* ── 마무리 (슬라이드 10) ── */
+  .closing { height: 100%; display: grid; grid-template-columns: 1fr 1.3fr; }
+  .closing-left { background: var(--purple); color: #fff; padding: 6cqi 4cqi 5cqi 5cqi; display: flex; flex-direction: column; justify-content: space-between; }
+  .closing-left .brand { font-size: 0.95em; letter-spacing: 0.3em; font-weight: 700; }
+  .closing-left .big { color: #fff; font-size: 9cqi; }
+  .closing-left .big .u { color: #fff; opacity: 0.85; }
+  .closing-left .sub { font-size: 1.3em; line-height: 1.55; margin-top: 1.4cqi; max-width: 20em; }
+  .closing-left .meta { font-size: 0.82em; letter-spacing: 0.2em; line-height: 2; opacity: 0.9; }
+  .closing-right { padding: 6cqi 5cqi 5cqi 5cqi; display: flex; flex-direction: column; }
+  .closing-right h3 { font-size: 2cqi; font-weight: 700; color: var(--plum); letter-spacing: -0.02em; padding-left: 1.4cqi; border-left: 0.45cqi solid var(--purple); }
+  .next { margin-top: 2.6cqi; display: flex; flex-direction: column; }
+  .next-h { display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 1.4cqi; font-size: 0.78em; letter-spacing: 0.18em; font-weight: 600; color: var(--graphite); padding-bottom: 0.8cqi; border-bottom: 2px solid var(--plum); }
+  .next-r { display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 1.4cqi; align-items: baseline; padding: 1.5cqi 0; border-bottom: 1px solid var(--line); }
+  .next-r .a { font-size: 1.05em; color: var(--ink); line-height: 1.5; display: flex; gap: 0.9cqi; align-items: baseline; }
+  .next-r .a b { font-weight: 300; font-size: 1.5cqi; color: var(--purple); flex-shrink: 0; line-height: 1; }
+  .next-r .o { font-size: 0.95em; font-weight: 600; color: var(--ink); }
+  .next-r .w { font-size: 0.95em; color: var(--purple); font-weight: 600; }
+  .closing-right .ask { margin-top: auto; padding: 1.6cqi 2cqi; background: var(--lilac); border-left: 0.45cqi solid var(--purple); font-size: 1.05em; line-height: 1.6; color: var(--ink); }
+
+  /* ── Print ── */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    body { overflow: visible; height: auto; cursor: default; }
+    .deck { transform: none !important; gap: 0; margin: 0; padding: 0; max-width: none; }
+    .slide { width: 100vw; height: 100vh; aspect-ratio: auto; flex-shrink: 0; page-break-after: always; page-break-inside: avoid; box-shadow: none; overflow: hidden; }
+    .slide:last-child { page-break-after: avoid; }
+    .nav-dots, .nav-hint, .print-btn { display: none !important; }
+    @page { size: landscape; margin: 0; }
+  }
+
+  /* ── Nav / Layout ── */
+  .deck { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+  .nav-dots { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 100; background: rgba(59,20,102,0.75); backdrop-filter: blur(8px); padding: 10px 18px; border-radius: 999px; }
+  .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.25s; padding: 0; }
+  .nav-dot.is-active { background: #fff; transform: scale(1.3); }
+  .nav-hint { position: fixed; top: 50%; z-index: 90; color: rgba(59,20,102,0.15); font-size: 32px; pointer-events: none; transition: opacity 0.4s; display: inline-block; transform: translateY(-50%) scaleY(1.8); transform-origin: center center; }
+  .nav-hint-l { left: 40px; }
+  .nav-hint-r { right: 40px; }
+  body { overflow: hidden; height: 100vh; cursor: pointer; }
+  .deck { gap: 0; margin: 0; padding: 0; max-width: none; }
+  .slide { width: 100vw; height: 100vh; aspect-ratio: auto; flex-shrink: 0; }
+  @media (max-width: 720px) { .nav-dots { bottom: 16px; padding: 8px 14px; gap: 8px; } }
+  @media (prefers-reduced-motion: reduce) { .deck { transition: none; } }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ━━ 1. 표지 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="cover">
+      <div class="cover-panel">
+        <div class="brand">AI ROASTING</div>
+        <div class="chapters">
+          <div class="ch"><b>01</b><div>진단<small>구매비 구조와 절감 여지</small></div></div>
+          <div class="ch"><b>02</b><div>방안<small>3대 절감 축과 실행 로드맵</small></div></div>
+          <div class="ch"><b>03</b><div>실행<small>리스크, 투자 회수, 의사결정 요청</small></div></div>
+        </div>
+        <div class="meta">대외비 · 최종 보고<br/>2026년 9월</div>
+      </div>
+      <div class="cover-main">
+        <div class="cover-eye">조달·공급망 비용 혁신 프로그램</div>
+        <div>
+          <h1>18개월 내<br/>구매비 <span class="num">8.5%</span><br/>절감 방안</h1>
+          <p class="cover-sub">공급사 통합·물류 재설계·재고 최적화 3대 축으로 연 1,050억 원을 절감하는 실행 계획입니다.</p>
+        </div>
+        <div class="cover-foot">
+          <div>최고 경영진 보고</div>
+          <div>v1.0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━ 2. 요약 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span class="on">요약</span><span>진단</span><span>방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">구매비 8.5% 절감으로 EBITDA 마진 3.3%p 개선이 가능함</h2>
+      <p class="lead">연 구매비 1조 2,400억 원 가운데 1,050억 원이 18개월 내 절감 가능한 규모입니다.</p>
+      <div class="summary">
+        <div class="msg">
+          <div class="big">68<span class="u">%</span></div>
+          <div class="msg-t">구매비 68%가 상위 200개사에 집중됨</div>
+          <p>공급사 1,840개 중 200개사가 구매 금액의 68%를 차지합니다. 계약 표준화율은 35%에 그칩니다.</p>
+          <div class="label">01 진단</div>
+        </div>
+        <div class="msg key">
+          <div class="big">1,050<span class="u">억 원</span></div>
+          <div class="msg-t">3대 절감 축으로 구매비 8.5%를 절감함</div>
+          <p>공급사 통합 520억 원, 물류 재설계 285억 원, 재고 최적화 245억 원으로 구성됩니다.</p>
+          <div class="label">02 방안</div>
+        </div>
+        <div class="msg">
+          <div class="big">10<span class="u">개월</span></div>
+          <div class="msg-t">투자 260억 원은 10개월 내 회수됨</div>
+          <p>1차 연도 절감 310억 원으로 투자를 회수하며, 3년 누적 절감액은 2,140억 원입니다.</p>
+          <div class="label">03 실행</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>조달·공급망 비용 혁신 프로그램</span><span class="pg">2 / 10</span></div>
+  </section>
+
+  <!-- ━━ 3. 진단: KPI ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span class="on">진단</span><span>방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">구매비 68%가 상위 200개사에 집중되어 통합 협상 여지가 큼</h2>
+      <p class="lead">공급사 1,840개 중 200개사가 구매 금액의 68%를 차지해 통합 협상 효과가 큽니다.</p>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="big">1.24<span class="u">조 원</span></div>
+          <span class="label">연 구매비</span>
+          <div class="note">2025 회계연도, 직접재와 간접재 합산</div>
+          <span class="chip warn">매출 대비 39%</span>
+        </div>
+        <div class="kpi">
+          <div class="big">1,840<span class="u">개</span></div>
+          <span class="label">거래 공급사 수</span>
+          <div class="note">연 1억 원 미만 거래 공급사가 1,120개</div>
+          <span class="chip">상위 200개 = 68%</span>
+        </div>
+        <div class="kpi">
+          <div class="big">35<span class="u">%</span></div>
+          <span class="label">계약 표준화율</span>
+          <div class="note">표준 조건으로 체결한 계약의 금액 비중</div>
+          <span class="chip warn">업계 평균 62%</span>
+        </div>
+        <div class="kpi">
+          <div class="big">62<span class="u">일</span></div>
+          <span class="label">재고 회전일</span>
+          <div class="note">원자재와 부품 재고 기준</div>
+          <span class="chip warn">업계 상위 48일</span>
+        </div>
+      </div>
+      <div class="conc">
+        <div class="conc-box">
+          <h4>진단 결과</h4>
+          <p>구매 규모 대비 협상력이 분산돼 있습니다. 동일 품목을 평균 4.2개사에서 서로 다른 단가로 구매합니다.</p>
+        </div>
+        <div class="conc-box">
+          <h4>절감 여지</h4>
+          <p>상위 200개사 재협상으로 단가를 평균 6% 인하할 수 있습니다. 업계 벤치마크 대비 단가 격차가 근거입니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: 2025 회계연도 구매 데이터, 공급사 마스터, 팀 분석</div>
+    <div class="foot"><span></span><span class="pg">3 / 10</span></div>
+  </section>
+
+  <!-- ━━ 4. 진단: 마진 브리지 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span class="on">진단</span><span>방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">3대 절감 축으로 EBITDA 마진이 6.8%에서 10.1%로 개선됨</h2>
+      <p class="lead">EBITDA(상각 전 영업이익) 마진 기준입니다. 매출 3조 2,000억 원에 절감액 1,050억 원을 반영했습니다.</p>
+      <div class="bridge-wrap">
+        <div class="bridge">
+          <div class="bar-col">
+            <div class="bar base" style="bottom:0; height:56.7%;"></div>
+            <div class="bar-v" style="bottom:59%;">6.8%</div>
+            <div class="bar-l"><b>현재</b>2025 회계연도</div>
+          </div>
+          <div class="bar-col">
+            <div class="link" style="left:-2.6cqi; right:100%; bottom:56.7%;"></div>
+            <div class="bar" style="bottom:56.7%; height:13.3%;"></div>
+            <div class="bar-v on" style="bottom:72.5%;">+1.6%p</div>
+            <div class="bar-l"><b>공급사 통합</b>520억 원</div>
+          </div>
+          <div class="bar-col">
+            <div class="link" style="left:-2.6cqi; right:100%; bottom:70%;"></div>
+            <div class="bar" style="bottom:70%; height:7.5%;"></div>
+            <div class="bar-v on" style="bottom:80%;">+0.9%p</div>
+            <div class="bar-l"><b>물류 재설계</b>285억 원</div>
+          </div>
+          <div class="bar-col">
+            <div class="link" style="left:-2.6cqi; right:100%; bottom:77.5%;"></div>
+            <div class="bar" style="bottom:77.5%; height:6.7%;"></div>
+            <div class="bar-v on" style="bottom:86.5%;">+0.8%p</div>
+            <div class="bar-l"><b>재고 최적화</b>245억 원</div>
+          </div>
+          <div class="bar-col">
+            <div class="link" style="left:-2.6cqi; right:100%; bottom:84.2%;"></div>
+            <div class="bar total" style="bottom:0; height:84.2%;"></div>
+            <div class="bar-v" style="bottom:86.5%;">10.1%</div>
+            <div class="bar-l"><b>목표</b>2028 회계연도</div>
+          </div>
+        </div>
+        <div class="bridge-side">
+          <div class="side-row"><span class="n">공급사 통합</span><span class="v">4.2%</span></div>
+          <div class="side-row"><span class="n">물류 재설계</span><span class="v">2.3%</span></div>
+          <div class="side-row"><span class="n">재고 최적화</span><span class="v">2.0%</span></div>
+          <div class="side-row sum"><span class="n">구매비 절감률 합계</span><span class="v">8.5%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: 2025 회계연도 손익, 팀 재무 모델 (Base Case)</div>
+    <div class="foot"><span></span><span class="pg">4 / 10</span></div>
+  </section>
+
+  <!-- ━━ 5. 방안: 평가표 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span>진단</span><span class="on">방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">4개 대안 중 공급사 통합이 절감 규모와 실행 속도에서 최우선임</h2>
+      <p class="lead">절감 규모·실행 난이도·시행 속도·리스크 4개 기준의 가중 평가 결과입니다. 상위 3개 대안을 채택합니다.</p>
+      <table class="eval">
+        <thead>
+          <tr><th>방안</th><th>절감 규모</th><th>실행 난이도</th><th>시행 속도</th><th>리스크</th><th>종합</th></tr>
+        </thead>
+        <tbody>
+          <tr class="pick">
+            <td>공급사 통합<small>상위 200개 공급사 재협상, 품목별 2개사 체제</small></td>
+            <td><span class="ball" style="--f:100%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td><span class="ball" style="--f:50%"></span></td>
+            <td class="tot">3.8</td>
+          </tr>
+          <tr class="pick">
+            <td>물류 재설계<small>거점 통합과 3PL 전환</small></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td><span class="ball" style="--f:50%"></span></td>
+            <td><span class="ball" style="--f:50%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td class="tot">3.1</td>
+          </tr>
+          <tr class="pick">
+            <td>재고 최적화<small>자동 발주와 안전재고 재산정</small></td>
+            <td><span class="ball" style="--f:50%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td><span class="ball" style="--f:100%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td class="tot">3.0</td>
+          </tr>
+          <tr>
+            <td>역경매 도입<small>간접재 전 품목 온라인 입찰</small></td>
+            <td><span class="ball" style="--f:25%"></span></td>
+            <td><span class="ball" style="--f:50%"></span></td>
+            <td><span class="ball" style="--f:75%"></span></td>
+            <td><span class="ball" style="--f:25%"></span></td>
+            <td class="tot">2.1</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="eval-legend">
+        <span><span class="ball" style="--f:100%"></span>매우 유리</span>
+        <span><span class="ball" style="--f:50%"></span>보통</span>
+        <span><span class="ball" style="--f:0%"></span>불리</span>
+        <span>종합 점수는 4점 만점, 네 기준 가중 평균</span>
+      </div>
+    </div>
+    <div class="source">출처: 팀 분석, 구매 부문 워크숍 2회, 공급사 인터뷰 31건</div>
+    <div class="foot"><span></span><span class="pg">5 / 10</span></div>
+  </section>
+
+  <!-- ━━ 6. 방안: 로드맵 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span>진단</span><span class="on">방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">3단계 18개월 로드맵으로 목표 절감액 1,050억 원을 전량 확보함</h2>
+      <p class="lead">단계별 기간은 절감 기여도에 비례해 배분했습니다. 각 단계 종료 시 최고 경영진 게이트 심의를 거칩니다.</p>
+      <div class="road">
+        <div class="phase-h"><small>1단계 · 3개월</small>진단과 설계</div>
+        <div class="phase-h on"><small>2단계 · 6개월</small>파일럿</div>
+        <div class="phase-h last"><small>3단계 · 9개월</small>전사 확산</div>
+        <div class="phase-b">
+          <span class="label">2026년 10월 ~ 12월</span>
+          <ul>
+            <li>품목별 구매비 분석 완료</li>
+            <li>상위 200개 공급사 협상안 설계</li>
+            <li>카테고리 매니저 6명 충원</li>
+          </ul>
+          <div class="gate"><b>게이트 1</b>협상안 승인</div>
+        </div>
+        <div class="phase-b">
+          <span class="label">2027년 1월 ~ 6월</span>
+          <ul>
+            <li>직접재 3개 카테고리 재협상</li>
+            <li>수도권 물류 거점 2곳 통합</li>
+            <li>자동 발주 시스템 1개 공장 적용</li>
+          </ul>
+          <div class="gate"><b>게이트 2</b>절감 310억 원 확인</div>
+        </div>
+        <div class="phase-b">
+          <span class="label">2027년 7월 ~ 2028년 6월</span>
+          <ul>
+            <li>전 카테고리 재협상과 계약 표준화</li>
+            <li>3PL 전환과 전국 거점 재편</li>
+            <li>자동 발주 전 공장 확산</li>
+          </ul>
+          <div class="gate"><b>게이트 3</b>연 1,050억 원 달성</div>
+        </div>
+      </div>
+      <div class="road-total">
+        <span class="n">18개월 뒤 연 절감액</span>
+        <span class="big">1,050억 원</span>
+      </div>
+    </div>
+    <div class="source">출처: 팀 분석, 구매·물류·생산 부문 합동 계획 (2026년 9월)</div>
+    <div class="foot"><span></span><span class="pg">6 / 10</span></div>
+  </section>
+
+  <!-- ━━ 7. 방안: 현재 vs 목표 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span>진단</span><span class="on">방안</span><span>실행</span></div>
+    <div class="body">
+      <h2 class="headline">운영 지표 5개를 2028년까지 업계 상위 25% 수준으로 끌어올림</h2>
+      <p class="lead">목표치는 업계 상위 25% 벤치마크 기준입니다. 지표별 담당 부문이 월 단위로 진척을 관리합니다.</p>
+      <div class="cmp">
+        <div class="cmp-h"><span>지표</span><span>현재</span><span></span><span class="to">2028년 목표</span><span>변화</span></div>
+        <div class="cmp-r">
+          <div class="k">거래 공급사 수<small>연 1회 이상 거래 기준</small></div>
+          <div class="from">1,840개</div><div class="arrow"></div><div class="to">1,100개</div>
+          <div class="d"><b>-40%</b> 품목별 2개사 체제</div>
+        </div>
+        <div class="cmp-r">
+          <div class="k">계약 표준화율<small>표준 조건 계약의 금액 비중</small></div>
+          <div class="from">35%</div><div class="arrow"></div><div class="to">80%</div>
+          <div class="d"><b>+45%p</b> 업계 평균 62% 초과</div>
+        </div>
+        <div class="cmp-r">
+          <div class="k">재고 회전일<small>원자재와 부품 재고</small></div>
+          <div class="from">62일</div><div class="arrow"></div><div class="to">48일</div>
+          <div class="d"><b>-14일</b> 운전자본 190억 원 감소</div>
+        </div>
+        <div class="cmp-r">
+          <div class="k">구매 리드타임<small>요청에서 발주까지</small></div>
+          <div class="from">21일</div><div class="arrow"></div><div class="to">12일</div>
+          <div class="d"><b>-9일</b> 승인 단계 5개에서 3개로</div>
+        </div>
+        <div class="cmp-r">
+          <div class="k">카테고리 매니저<small>전담 인력</small></div>
+          <div class="from">12명</div><div class="arrow"></div><div class="to">18명</div>
+          <div class="d"><b>+6명</b> 1단계에 충원 완료</div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: 2025 회계연도 운영 데이터, 업계 벤치마크, 팀 분석</div>
+    <div class="foot"><span></span><span class="pg">7 / 10</span></div>
+  </section>
+
+  <!-- ━━ 8. 실행: 리스크 히트맵 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span>진단</span><span>방안</span><span class="on">실행</span></div>
+    <div class="body">
+      <h2 class="headline">공급사 반발과 품질 저하가 최고 경영진이 직접 관리할 핵심 리스크임</h2>
+      <p class="lead">리스크 6개를 발생 가능성과 영향도 기준으로 배치했습니다. 우상단 2개는 월간 경영 회의 안건으로 관리합니다.</p>
+      <div class="heat-wrap">
+        <div class="heat">
+          <div class="ay" style="grid-row:1 / span 3;">발생 가능성</div>
+          <div class="cell l2"><span class="risk"><b>5</b>환율 변동</span></div>
+          <div class="cell l3"><span class="risk"><b>3</b>시스템 지연</span></div>
+          <div class="cell l4"><span class="risk"><b>1</b>공급사 반발</span></div>
+          <div class="cell l1"></div>
+          <div class="cell l2"><span class="risk"><b>4</b>조직 저항</span></div>
+          <div class="cell l4"><span class="risk"><b>2</b>품질 저하</span></div>
+          <div class="cell l1"><span class="risk"><b>6</b>물류 파업</span></div>
+          <div class="cell l1"></div>
+          <div class="cell l2"></div>
+          <div class="ax">영향</div>
+        </div>
+        <div class="risk-list">
+          <div class="risk-row"><b>1</b><div><div class="n">공급사 반발</div><div class="m">전환 기간 6개월과 물량 보장 조건을 제시해 이탈을 방지합니다.</div></div></div>
+          <div class="risk-row"><b>2</b><div><div class="n">품질 저하</div><div class="m">신규 공급사는 3개월 병행 납품으로 품질을 검증한 뒤 전환합니다.</div></div></div>
+          <div class="risk-row"><b>3</b><div><div class="n">시스템 지연</div><div class="m">자동 발주는 기존 ERP 모듈로 선적용해 개발 지연 영향을 차단합니다.</div></div></div>
+          <div class="risk-row"><b>4</b><div><div class="n">조직 저항</div><div class="m">카테고리 매니저 KPI에 절감액 달성률을 30% 반영합니다.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: 팀 분석, 리스크 워크숍 (2026년 9월)</div>
+    <div class="foot"><span></span><span class="pg">8 / 10</span></div>
+  </section>
+
+  <!-- ━━ 9. 실행: 투자 회수 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="rail"></div>
+    <div class="lockup">AI ROASTING</div>
+    <div class="tracker"><span>요약</span><span>진단</span><span>방안</span><span class="on">실행</span></div>
+    <div class="body">
+      <h2 class="headline">총투자 260억 원은 1차 연도 절감으로 10개월 내 회수됨</h2>
+      <p class="lead">투자는 1·2단계에 집중되며, 절감 효과는 2차 연도부터 본격화됩니다.</p>
+      <div class="case-wrap">
+        <table class="case">
+          <thead>
+            <tr><th>항목</th><th>1차 연도</th><th>2차 연도</th><th>3차 연도</th><th>3년 누적</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>시스템 투자</td><td>(90억 원)</td><td>(30억 원)</td><td>0</td><td>(120억 원)</td></tr>
+            <tr><td>조직·인력</td><td>(45억 원)</td><td>(25억 원)</td><td>(15억 원)</td><td>(85억 원)</td></tr>
+            <tr><td>변화관리</td><td>(35억 원)</td><td>(15억 원)</td><td>(5억 원)</td><td>(55억 원)</td></tr>
+            <tr><td>절감액</td><td class="hi">310억 원</td><td class="hi">780억 원</td><td class="hi">1,050억 원</td><td class="hi">2,140억 원</td></tr>
+            <tr class="sum"><td>순효과</td><td>140억 원</td><td>710억 원</td><td>1,030억 원</td><td class="hi">1,880억 원</td></tr>
+          </tbody>
+        </table>
+        <div class="payback">
+          <span class="label">투자 회수 기간</span>
+          <div class="big">10<span class="u">개월</span></div>
+          <p>1차 연도 절감 310억 원이 총투자 260억 원을 초과하는 시점입니다.</p>
+          <div class="row"><span>3년 누적 순효과</span><b>1,880억 원</b></div>
+          <div class="row"><span>투자 대비 절감 배수</span><b>8.2x</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">출처: 팀 재무 모델 (Base Case), 재무 부문 검토 (2026년 9월)</div>
+    <div class="foot"><span></span><span class="pg">9 / 10</span></div>
+  </section>
+
+  <!-- ━━ 10. 마무리 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="slide">
+    <div class="closing">
+      <div class="closing-left">
+        <div class="brand">AI ROASTING</div>
+        <div>
+          <div class="big">8.5<span class="u">%</span></div>
+          <div class="sub">18개월 내 절감할 구매비, 연 1,050억 원입니다.</div>
+        </div>
+        <div class="meta">대외비 · 최종 보고<br/>2026년 9월</div>
+      </div>
+      <div class="closing-right">
+        <h3>최고 경영진 의사결정 요청 사항</h3>
+        <div class="next">
+          <div class="next-h"><span>결정 사항</span><span>담당</span><span>시점</span></div>
+          <div class="next-r"><div class="a"><b>1</b>1단계 예산 90억 원 집행과 카테고리 매니저 6명 충원 승인</div><div class="o">CFO, CHRO</div><div class="w">9월 말</div></div>
+          <div class="next-r"><div class="a"><b>2</b>상위 200개사 재협상 원칙과 공급사 전환 조건 확정</div><div class="o">구매 부문장</div><div class="w">10월 중</div></div>
+          <div class="next-r"><div class="a"><b>3</b>절감액 추적 지표와 단계별 게이트 심의 일정 확정</div><div class="o">PMO</div><div class="w">10월 말</div></div>
+        </div>
+        <div class="ask">9월 중 의사결정 시 1단계는 10월 첫 주에 착수합니다. 착수가 1개월 지연되면 2차 연도 절감액이 약 65억 원 감소합니다.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<div class="nav-dots" id="dots"></div>
+<div class="nav-hint nav-hint-l" id="hintL">&#9664;</div>
+<div class="nav-hint nav-hint-r" id="hintR">&#9654;</div>
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const deck = document.querySelector('.deck');
+  const dotsWrap = document.getElementById('dots');
+  const hintL = document.getElementById('hintL');
+  const hintR = document.getElementById('hintR');
+  let cur = 0;
+  const total = slides.length;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'nav-dot' + (i === 0 ? ' is-active' : '');
+    d.setAttribute('aria-label', (i + 1) + ' / ' + total);
+    d.addEventListener('click', e => { e.stopPropagation(); go(i); });
+    dotsWrap.appendChild(d);
+  });
+
+  function go(idx) {
+    if (idx < 0 || idx >= total) return;
+    cur = idx;
+    deck.style.transform = 'translateY(-' + (cur * 100) + 'vh)';
+    dotsWrap.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('is-active', i === cur));
+    hintL.style.opacity = cur === 0 ? '0' : '1';
+    hintR.style.opacity = cur === total - 1 ? '0' : '1';
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.nav-dots') || e.target.closest('.print-btn')) return;
+    if (e.clientX < window.innerWidth / 2) go(cur - 1);
+    else go(cur + 1);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(cur + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(cur - 1);
+  });
+
+  go(0);
+})();
+</script>
+</body>
+</html>

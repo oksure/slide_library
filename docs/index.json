@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-29T06:35:56.721Z",
+  "generated_at": "2026-09-10T12:36:32.126Z",
   "template_count": 35,
   "templates": [
     {
@@ -371,40 +371,6 @@
       "slide_count": 11
     },
     {
-      "slug": "floral-pastel",
-      "name": "Daisy Days",
-      "tagline": "Cheerful pastel deck with hand-drawn daisies, stars, and rainbows. Friendly, soft, and warm.",
-      "mood": [
-        "cheerful",
-        "playful",
-        "warm",
-        "sunny",
-        "wholesome"
-      ],
-      "occasion": [
-        "education / classroom",
-        "kids product launch",
-        "wellness program",
-        "community workshop",
-        "creator portfolio (craft / illustration)",
-        "team kickoff",
-        "wedding / baby shower planning"
-      ],
-      "tone": [
-        "friendly",
-        "soft",
-        "encouraging",
-        "approachable",
-        "lighthearted"
-      ],
-      "formality": "low",
-      "density": "medium",
-      "scheme": "light",
-      "best_for": "Anything that should feel friendly, soft, and joyful: educational content, kids and family, wellness programs, community workshops, creator portfolios for craft / illustration. Also lovely for an unexpected playful internal kickoff, a wedding planning deck, or any moment where warmth is the message — including across tech or business contexts.",
-      "avoid_for": "Contexts where the audience explicitly expects authority and precision — the hand-drawn pastel SVG decorations are the opposite of buttoned-up.",
-      "slide_count": 10
-    },
-    {
       "slug": "forest-green",
       "name": "Grove",
       "tagline": "Forest-green canvas with cream type, classical Playfair serifs, and a single rust accent.",
@@ -470,6 +436,37 @@
       "best_for": "Anything that should feel like a quietly serious design / research bulletin, art publication, or curated trend report. Strong for studio annuals, agency capabilities decks, design-research publications, architecture / art / academic decks, and any deck wanting one strict accent colour and a printed-ledger calmness rather than corporate polish.",
       "avoid_for": "Decks that need warmth, multi-colour energy, or a casual / playful voice — the strict cobalt + cream + grid palette is intentionally austere.",
       "slide_count": 8
+    },
+    {
+      "slug": "kearney-purple",
+      "name": "커니 퍼플",
+      "tagline": "화이트 캔버스 위 시그니처 퍼플 레일과 가는 숫자. 운영·조달 혁신 보고에 맞춘 실행형 톤.",
+      "mood": [
+        "실행 중심",
+        "정밀한",
+        "구조적",
+        "운영 지향",
+        "컨설팅"
+      ],
+      "occasion": [
+        "운영 혁신 보고",
+        "조달·공급망 전략",
+        "비용 절감 프로그램",
+        "최고 경영진 의사결정",
+        "PMO 진행 보고"
+      ],
+      "tone": [
+        "단정한",
+        "수치 중심",
+        "실행적",
+        "절제된"
+      ],
+      "formality": "high",
+      "density": "high",
+      "scheme": "light",
+      "best_for": "운영 혁신, 조달·공급망 전략, 비용 절감 프로그램, 최고 경영진 의사결정 요청 등 수치와 실행 계획을 함께 보여야 하는 고격식 보고에 적합함.",
+      "avoid_for": "브랜드 무드나 감성 스토리텔링이 중심인 발표, 탐색적 워크숍에는 톤이 건조할 수 있음.",
+      "slide_count": 10
     },
     {
       "slug": "mckinsey-navy",
