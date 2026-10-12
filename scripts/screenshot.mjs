@@ -21,13 +21,14 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
-const TEMPLATES_DIR = join(REPO_ROOT, 'templates');
-const SHOTS_DIR = join(REPO_ROOT, 'screenshots');
+const TEMPLATES_DIR = join(REPO_ROOT, 'docs', 'templates');
+const SHOTS_DIR = join(REPO_ROOT, 'docs', 'assets', 'screenshots');
 
 const MANIFEST = [
   { slug: 'mckinsey-navy',      shots: [1, 2, 3] },
   { slug: 'bain-red',           shots: [1, 2, 3] },
   { slug: 'bcg-green',          shots: [1, 2, 3] },
+  { slug: 'kearney-purple',     shots: [1, 4, 9] },
   { slug: 'navy-gold',          shots: [1, 8, 18] },
   { slug: 'navy-library',       shots: [1, 4, 8] },
   { slug: 'bw-typo',            shots: [1, 4, 12] },
@@ -58,7 +59,6 @@ const MANIFEST = [
   { slug: 'neon-pixel',         shots: [1, 5, 6] },
   { slug: 'windows-95',         shots: [1, 4, 8] },
   { slug: 'retro-cassette',     shots: [1, 3, 4] },
-  { slug: 'floral-pastel',      shots: [1, 4, 8] },
 ];
 
 const CONCURRENCY = 6;

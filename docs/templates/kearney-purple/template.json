@@ -1,0 +1,46 @@
+{
+  "slug": "kearney-purple",
+  "name": "커니 퍼플",
+  "tagline": "화이트 캔버스 위 시그니처 퍼플 레일과 가는 숫자. 운영·조달 혁신 보고에 맞춘 실행형 톤.",
+  "mood": [
+    "실행 중심",
+    "정밀한",
+    "구조적",
+    "운영 지향",
+    "컨설팅"
+  ],
+  "occasion": [
+    "운영 혁신 보고",
+    "조달·공급망 전략",
+    "비용 절감 프로그램",
+    "최고 경영진 의사결정",
+    "PMO 진행 보고"
+  ],
+  "tone": [
+    "단정한",
+    "수치 중심",
+    "실행적",
+    "절제된"
+  ],
+  "formality": "high",
+  "density": "high",
+  "palette": {
+    "bg": "#ffffff",
+    "accent": "#7823DC",
+    "deep": "#3B1466",
+    "tint": "#EFE6FB",
+    "ink": "#1B1530",
+    "muted": "#6B6580",
+    "description": "화이트 캔버스 위 시그니처 퍼플 액센트, 딥 플럼 헤드라인, 라일락 틴트 배경, 차콜 본문"
+  },
+  "typography": {
+    "display": "Pretendard Variable",
+    "body": "Pretendard Variable",
+    "style": "Pretendard 700 헤드라인 + Pretendard 300 대형 숫자 + Pretendard 본문; 가는 숫자와 굵은 문장의 대비"
+  },
+  "scheme": "light",
+  "best_for": "운영 혁신, 조달·공급망 전략, 비용 절감 프로그램, 최고 경영진 의사결정 요청 등 수치와 실행 계획을 함께 보여야 하는 고격식 보고에 적합함.",
+  "avoid_for": "브랜드 무드나 감성 스토리텔링이 중심인 발표, 탐색적 워크숍에는 톤이 건조할 수 있음.",
+  "slide_count": 10,
+  "navigation": "click"
+}
